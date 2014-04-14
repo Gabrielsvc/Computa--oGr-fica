@@ -1,0 +1,11 @@
+Próx. Reunião
+	Quinta feira 17/05
+	15:00
+
+To do:
+	Visualisar e brincar com o Xfig e o Inkscape.
+	Ver tutoriais do Qt.
+	Pensar e Abstrair Estruturas de controle e as classes de objeto.
+	Facilidades de integração Qt e OpenGL.
+	Ver detalhes do formato SVG.
+	Aprender a utilizar o Git!!
