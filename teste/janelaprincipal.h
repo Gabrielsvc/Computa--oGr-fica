@@ -1,7 +1,6 @@
 #ifndef JANELAPRINCIPAL_H
 #define JANELAPRINCIPAL_H
 
-#include <QWidget>
 
 namespace Ui {
 class JanelaPrincipal;
