@@ -1,11 +1,11 @@
-
 #include "janelaprincipal.h"
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    JanelaPrincipal w;
+    janelaprincipal w;
     w.show();
-    /*estudar é nada*/
+
     return a.exec();
 }
