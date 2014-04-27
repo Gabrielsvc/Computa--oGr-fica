@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" rowspan="4">
-    <widget class="QWidget" name="widget" native="true"/>
+    <widget class="painel" name="painel" native="true"/>
    </item>
    <item row="0" column="1">
     <widget class="QPushButton" name="pushButton">
@@ -60,6 +60,17 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>painel</class>
+   <extends>QWidget</extends>
+   <header>painel.h</header>
+   <container>1</container>
+   <slots>
+    <slot>criarect()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>
@@ -75,6 +86,22 @@
     <hint type="destinationlabel">
      <x>715</x>
      <y>315</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>painel</receiver>
+   <slot>criarect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>700</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>570</x>
+     <y>136</y>
     </hint>
    </hints>
   </connection>

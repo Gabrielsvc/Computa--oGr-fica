@@ -35,8 +35,22 @@ class rect: public poligono
 protected:
     int ponto1[2];
     int ponto2[2];
+    int ponto3[2];
+    int ponto4[2];
 
 public:
+    void rect(){
+        preenchido = false;
+        ponto1 = {0,0};
+        ponto2 = {10,0};
+        ponto3 = {10,10};
+        ponto4 = {0,10}
+        desenharect(ponto1,ponto2,ponto3,ponto4);
+    }
+
+    void desenharect(int*, int*, int*, int*);
+    void Bresenham(int*, int*);
+
 
     int *get_ponto1(){
         return ponto1;
@@ -44,11 +58,28 @@ public:
     int *get_ponto2(){
         return ponto2;
     }
+
+    int *get_ponto3(){
+        return ponto3;
+    }
+
+    int *get_ponto4(){
+        return ponto4;
+    }
+
     void set_ponto1(int* ponto_entrada){
-        ponto1=ponto_entrada;
+        ponto1 = ponto_entrada;
     }
     void set_ponto2(int* ponto_entrada){
-        ponto2=ponto_entrada;
+        ponto2 = ponto_entrada;
+    }
+
+    void set_ponto3(int* ponto_entrada){
+        ponto3 = ponto_entrada;
+    }
+
+    void set_ponto4(int* ponto_entrada){
+        ponto4 = ponto_entrada;
     }
 };
 
