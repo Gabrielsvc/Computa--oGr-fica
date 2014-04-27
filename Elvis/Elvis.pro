@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         janelaprincipal.cpp \
     formas.cpp \
-    painel.cpp
+    painel.cpp \
+    rect.cpp
 
 HEADERS  += janelaprincipal.h \
     formas.h \
-    painel.h
+    painel.h \
+    rect.h
 
 FORMS    += janelaprincipal.ui

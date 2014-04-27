@@ -18,6 +18,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QWidget>
+#include "painel.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -25,7 +26,7 @@ class Ui_janelaprincipal
 {
 public:
     QGridLayout *gridLayout;
-    QWidget *widget;
+    painel *painelp;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QSpacerItem *verticalSpacer;
@@ -40,10 +41,10 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        widget = new QWidget(janelaprincipal);
-        widget->setObjectName(QStringLiteral("widget"));
+        painelp = new painel(janelaprincipal);
+        painelp->setObjectName(QStringLiteral("painelp"));
 
-        gridLayout->addWidget(widget, 0, 0, 4, 1);
+        gridLayout->addWidget(painelp, 0, 0, 4, 1);
 
         pushButton = new QPushButton(janelaprincipal);
         pushButton->setObjectName(QStringLiteral("pushButton"));
@@ -68,6 +69,7 @@ public:
 
         retranslateUi(janelaprincipal);
         QObject::connect(pushButton_3, SIGNAL(clicked()), janelaprincipal, SLOT(close()));
+        QObject::connect(pushButton_2, SIGNAL(clicked()), painelp, SLOT(criarect()));
 
         QMetaObject::connectSlotsByName(janelaprincipal);
     } // setupUi

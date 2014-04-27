@@ -1,11 +1,13 @@
 #include "formas.h"
-
+#include "GL/gl.h"
+#include "cmath"
+#include "stdlib.h"
 
 formas::formas()
 {
 
 }
-rect::desenharect(int *ponto1, int *ponto2, int *ponto3, int *ponto4){
+void rect::desenharect(int *ponto1, int *ponto2, int *ponto3, int *ponto4){
     Bresenham(ponto1,ponto2);
     Bresenham(ponto2,ponto3);
     Bresenham(ponto3,ponto4);
@@ -14,7 +16,15 @@ rect::desenharect(int *ponto1, int *ponto2, int *ponto3, int *ponto4){
 
 
 void rect::Bresenham(int *ponto1,int *ponto2) {
-    GLintPoint T[] = {{0,0},{0,0}};
+
+    typedef struct{
+        int x;
+        int y;
+    }vetor;
+
+    vetor T[2];
+    T[0] = {0,0};
+    T[1] = {0,0};
     int delta_x,delta_y,p_k,x,y;
     int i,j;
         float  m;
@@ -268,7 +278,7 @@ void rect::Bresenham(int *ponto1,int *ponto2) {
                 }
             }
         }
-            }
+    }
 }
 
 

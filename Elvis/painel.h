@@ -1,10 +1,14 @@
 #ifndef PAINEL_H
 #define PAINEL_H
+#include "rect.h"
 
 #include <QWidget>
 
 class painel : public QWidget
 {
+    //modificacao recente
+    rect r;
+
     Q_OBJECT
 public:
     explicit painel(QWidget *parent = 0);
@@ -14,7 +18,10 @@ public:
 signals:
 
 public slots:
-    criarect();
+    void criarect(void){
+
+        r = new rect();
+    }
 };
 
 

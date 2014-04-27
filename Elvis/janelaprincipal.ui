@@ -15,7 +15,7 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0" rowspan="4">
-    <widget class="painel" name="painel" native="true"/>
+    <widget class="painel" name="painelp" native="true"/>
    </item>
    <item row="0" column="1">
     <widget class="QPushButton" name="pushButton">
@@ -92,7 +92,7 @@
   <connection>
    <sender>pushButton_2</sender>
    <signal>clicked()</signal>
-   <receiver>painel</receiver>
+   <receiver>painelp</receiver>
    <slot>criarect()</slot>
    <hints>
     <hint type="sourcelabel">
