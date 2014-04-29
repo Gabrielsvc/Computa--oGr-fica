@@ -1,7 +1,38 @@
-#ifndef RECT_H
-#define RECT_H
-#include "formas.h"
-class rect:public formas
+#ifndef FORMAS_H
+#define FORMAS_H
+
+class Formas
+{
+public:
+    Formas();
+protected :
+    int num_pontos;
+};
+
+#endif // FORMAS_H
+
+class Poligono: public Formas
+{
+protected :
+        bool preenchido;
+        int* cor;
+};
+
+class Plinha : public Formas
+{
+protected :
+    int* pontos;
+public:
+    int* get_pontos(){
+        return pontos;
+    }
+    void set_pontos(int* pontos_entrada){
+        pontos = pontos_entrada;
+    }
+
+};
+
+class Rect : public Poligono
 {
 protected:
     int* ponto1;
@@ -10,7 +41,7 @@ protected:
     int* ponto4;
 
 public:
-     rect(){
+     Rect(){
         preenchido = false;
 
         ponto1 = new int[2];
@@ -28,7 +59,7 @@ public:
         ponto4 = new int[2];
         ponto4[0] = 0;
         ponto4[1] = 10;
-        desenharect(ponto1,ponto2,ponto3,ponto4);
+        this->desenharect(ponto1,ponto2,ponto3,ponto4);
     }
 
     void desenharect(int*, int*, int*, int*);
@@ -65,5 +96,3 @@ public:
         ponto4 = ponto_entrada;
     }
 };
-
-#endif // RECT_H
