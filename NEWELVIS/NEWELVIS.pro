@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -15,10 +15,10 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     formas.cpp \
-    painelgl.cpp
+    painelnovo.cpp
 
 HEADERS  += mainwindow.h \
     formas.h \
-    painelgl.h
+    painelnovo.h
 
 FORMS    += mainwindow.ui

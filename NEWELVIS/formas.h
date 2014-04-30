@@ -46,20 +46,20 @@ public:
         preenchido = false;
 
         ponto1 = new int[2];
-        ponto1[0]=0;
-        ponto1[1]=0;
+        ponto1[0]=50;
+        ponto1[1]=50;
 
         ponto2 = new int[2];
-        ponto2[0] = 10;
-        ponto2[1] = 0;
+        ponto2[0] = 200;
+        ponto2[1] = 50;
 
         ponto3 = new int[2];
-        ponto3[0] = 10;
-        ponto3[1] = 10;
+        ponto3[0] = 200;
+        ponto3[1] = 200;
 
         ponto4 = new int[2];
-        ponto4[0] = 0;
-        ponto4[1] = 10;
+        ponto4[0] = 50;
+        ponto4[1] = 200;
         this->desenharect(ponto1,ponto2,ponto3,ponto4);
     }
 

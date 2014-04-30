@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0" rowspan="3">
-     <widget class="PainelGL" name="widget" native="true"/>
+     <widget class="PainelNovo" name="Painel" native="true"/>
     </item>
     <item row="0" column="1">
      <widget class="QPushButton" name="pushButton">
@@ -76,10 +76,13 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>PainelGL</class>
+   <class>PainelNovo</class>
    <extends>QWidget</extends>
-   <header>painelgl.h</header>
+   <header>painelnovo.h</header>
    <container>1</container>
+   <slots>
+    <slot>iteracaorect()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
@@ -97,6 +100,22 @@
     <hint type="destinationlabel">
      <x>477</x>
      <y>174</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>Painel</receiver>
+   <slot>iteracaorect()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>493</x>
+     <y>92</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>151</y>
     </hint>
    </hints>
   </connection>
