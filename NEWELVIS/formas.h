@@ -1,5 +1,6 @@
 #ifndef FORMAS_H
 #define FORMAS_H
+#include "GL/gl.h"
 
 class Formas
 {

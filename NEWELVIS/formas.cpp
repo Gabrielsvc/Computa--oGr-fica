@@ -1,7 +1,7 @@
 #include "formas.h"
 #include "cmath"
 #include "stdlib.h"
-#include <GL/gl.h>
+//#include <GL/gl.h>
 
 Formas::Formas()
 {

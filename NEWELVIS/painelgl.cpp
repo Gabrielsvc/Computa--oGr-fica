@@ -1,62 +1,48 @@
 #include "painelgl.h"
+#include "stdio.h"
 
 PainelGL::PainelGL(QWidget *parent) :
     QWidget(parent)
 {
-    this->r = new Rect();
+    //this->r = new Rect();
+    //setFormat(DoubleBuffer|DepthBuffer);
 }
 
-void PainelGL :: resize( int width, int height )
+void PainelGL :: resizeGL( int w, int h )
 {
-    double menorX = 0,maiorX = 10,menorY = 0,maiorY = 10;
-    glViewport(0,0,(GLint)width,(GLint)height);
-
+    glViewport(0,0,w,h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    //gluOrtho2d(-1,1,-1,1);
-    if(width > height){
-        height = height?height:1;
-        double novaLargura = (maiorX - menorX)*width/height;
-        double difLargura = novaLargura - (maiorX - menorX);
-        menorX = 0.0 - difLargura / 2.0;
-        maiorX = 10 + difLargura / 2.0;
-    }
-    else
-    {
-        width = width?width:1;
-        double novaAltura = (maiorY - menorY)*height/width;
-        double difAltura = novaAltura - (maiorY - menorY);
-        menorY = 0.0 - difAltura / 2.0;
-        maiorY = 10 + difAltura / 2.0;
-    }
-    //gluOrtho2D(menorX,maiorX,menorY,maiorY);
+    glOrtho(0,w,0,h,-1.0,1.0);
     glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
+    glClearColor(0,0,0,0);
 }
-void PainelGL :: init( void )
+void PainelGL :: initializeGL( void )
 {
-  glShadeModel(GL_SMOOTH);
-
-  glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
-  glClearDepth(1.0f);
-
-  glEnable(GL_DEPTH_TEST);
-  glDepthFunc(GL_LEQUAL);
-
-  glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
+  glDisable(GL_TEXTURE_2D);
+  glDisable(GL_DEPTH_TEST);
+  glDisable(GL_COLOR_MATERIAL);
+  glEnable(GL_BLEND);
+  glEnable(GL_POLYGON_SMOOTH);
+  glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
+  glClearColor(0,0,0,0);
 }
 
 
-void PainelGL :: redesenha( void )
+void PainelGL :: paintGL( void )
 {
     // Clear the rendering window
-    glClearColor( 0.f, 0.f, 0.f, 0.f );
-    glClear( GL_COLOR_BUFFER_BIT );
-    r->desenharect(r->get_ponto1(),r->get_ponto2(),r->get_ponto3(),r->get_ponto4());
-    glPushMatrix( );
-    glPopMatrix( );
 
+    glClear( GL_COLOR_BUFFER_BIT );
+    glColor3f(1,0,0);
+
+    //r->desenharect(r->get_ponto1(),r->get_ponto2(),r->get_ponto3(),r->get_ponto4());
+
+    glBegin(GL_POLYGON);
+    glVertex2f(0,0);
+    glVertex2f(100,500);
+    glVertex2f(100,100);
+    glEnd();
     // Flush the pipeline, swap the buffers
     glFlush();
 }
