@@ -131,15 +131,15 @@
    <sender>pushButton_3</sender>
    <signal>clicked()</signal>
    <receiver>Painel</receiver>
-   <slot>iteracaorect()</slot>
+   <slot>iteracaopll()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>519</x>
-     <y>129</y>
+     <x>509</x>
+     <y>127</y>
     </hint>
     <hint type="destinationlabel">
      <x>418</x>
-     <y>203</y>
+     <y>221</y>
     </hint>
    </hints>
   </connection>
