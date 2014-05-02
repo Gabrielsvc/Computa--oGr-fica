@@ -1,6 +1,6 @@
 #include "painelnovo.h"
 #include <QtGui/QMouseEvent>
-
+#include <stdio.h>
 PainelNovo::PainelNovo(QWidget *parent) :
     QGLWidget(parent)
 {
@@ -25,6 +25,8 @@ void PainelNovo :: resizeGL( int w, int h)
 
 void PainelNovo :: initializeGL( void )
 {
+  printf("Inicializando painel\n");
+
   glDisable(GL_TEXTURE_2D);
   glDisable(GL_DEPTH_TEST);
   glDisable(GL_COLOR_MATERIAL);
@@ -32,6 +34,7 @@ void PainelNovo :: initializeGL( void )
   glEnable(GL_POLYGON_SMOOTH);
   glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
   glClearColor(0,0,0,0);
+
 }
 
 
@@ -73,7 +76,17 @@ void PainelNovo :: paintGL( void )
     r->desenharect(r->get_ponto1(),r->get_ponto2(),r->get_ponto3(),r->get_ponto4());
 
     glColor3f(1,0,0);
+    //Utilização do loop do OpenGL
+    /*glBegin(GL_POLYGON);
+    glVertex2d(r->get_ponto1()[0],r->get_ponto1()[1]);
 
+    glVertex2d(r->get_ponto2()[0],r->get_ponto2()[1]);
+
+    glVertex2d(r->get_ponto3()[0],r->get_ponto3()[1]);
+
+    glVertex2d(r->get_ponto4()[0],r->get_ponto4()[1]);
+    glEnd();
+    */
     glFlush();
 
 }
