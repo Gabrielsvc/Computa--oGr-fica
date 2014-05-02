@@ -34,8 +34,9 @@ public:
     PainelNovo *Painel;
     QPushButton *pushButton;
     QPushButton *pushButton_2;
-    QSpacerItem *verticalSpacer;
     QPushButton *pushButton_3;
+    QPushButton *pushButton_31;
+    QSpacerItem *verticalSpacer;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -54,7 +55,7 @@ public:
         Painel = new PainelNovo(centralWidget);
         Painel->setObjectName(QStringLiteral("Painel"));
 
-        gridLayout->addWidget(Painel, 0, 0, 4, 1);
+        gridLayout->addWidget(Painel, 0, 0, 5, 1);
 
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
@@ -67,14 +68,20 @@ public:
 
         gridLayout->addWidget(pushButton_2, 1, 1, 1, 1);
 
-        verticalSpacer = new QSpacerItem(20, 335, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout->addItem(verticalSpacer, 3, 1, 1, 1);
-
         pushButton_3 = new QPushButton(centralWidget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setMaximumSize(QSize(99, 27));
 
         gridLayout->addWidget(pushButton_3, 2, 1, 1, 1);
+
+        pushButton_31 = new QPushButton(centralWidget);
+        pushButton_31->setObjectName(QStringLiteral("pushButton_31"));
+
+        gridLayout->addWidget(pushButton_31, 3, 1, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 335, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer, 4, 1, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -91,7 +98,7 @@ public:
         retranslateUi(MainWindow);
         QObject::connect(pushButton, SIGNAL(clicked()), MainWindow, SLOT(close()));
         QObject::connect(pushButton_2, SIGNAL(clicked()), Painel, SLOT(iteracaorect()));
-        QObject::connect(pushButton_3, SIGNAL(clicked()), Painel, SLOT(iteracaopll()));
+        QObject::connect(pushButton_3, SIGNAL(clicked()), Painel, SLOT(iteracaocirc()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -101,7 +108,8 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         pushButton->setText(QApplication::translate("MainWindow", "fechar", 0));
         pushButton_2->setText(QApplication::translate("MainWindow", "retangulo", 0));
-        pushButton_3->setText(QApplication::translate("MainWindow", "Polilinha", 0));
+        pushButton_3->setText(QApplication::translate("MainWindow", "c\303\255rculo", 0));
+        pushButton_31->setText(QApplication::translate("MainWindow", "Polilinha", 0));
     } // retranslateUi
 
 };

@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" rowspan="4">
+    <item row="0" column="0" rowspan="5">
      <widget class="PainelNovo" name="Painel" native="true"/>
     </item>
     <item row="0" column="1">
@@ -52,6 +52,13 @@
      </widget>
     </item>
     <item row="3" column="1">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>Polilinha</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
      <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -63,13 +70,6 @@
        </size>
       </property>
      </spacer>
-    </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="text">
-       <string>Polilinha</string>
-      </property>
-     </widget>
     </item>
    </layout>
   </widget>
@@ -102,7 +102,6 @@
    <container>1</container>
    <slots>
     <slot>iteracaorect()</slot>
-
     <slot>iteracaocirc()</slot>
    </slots>
   </customwidget>
@@ -148,8 +147,8 @@
    <slot>iteracaocirc()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>525</x>
-     <y>131</y>
+     <x>538</x>
+     <y>124</y>
     </hint>
     <hint type="destinationlabel">
      <x>335</x>
