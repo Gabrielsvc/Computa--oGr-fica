@@ -44,8 +44,12 @@ protected:
 public:
      Rect(){
         preenchido = false;
-
         ponto1 = new int[2];
+        ponto2 = new int[2];
+        ponto3 = new int[2];
+        ponto4 = new int[2];
+
+        /*ponto1 = new int[2];
         ponto1[0]=50;
         ponto1[1]=50;
 
@@ -60,9 +64,10 @@ public:
         ponto4 = new int[2];
         ponto4[0] = 50;
         ponto4[1] = 200;
-        this->desenharect(ponto1,ponto2,ponto3,ponto4);
+        //this->desenharect(ponto1,ponto2,ponto3,ponto4);*/
     }
 
+    void set_rect_default(int*,int*);
     void desenharect(int*, int*, int*, int*);
     void Bresenham(int*, int*);
 

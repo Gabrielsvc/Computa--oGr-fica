@@ -7,6 +7,33 @@ Formas::Formas()
 {
 }
 
+void Rect :: set_rect_default(int* p_a,int* p_b){
+    int *p_c,*p_d;
+
+    p_c = new int[2];
+    p_d = new int[2];
+
+    if(p_a[0] < p_b[0]){
+        p_c[0] = p_b[0];
+        p_c[1] = p_a[1];
+        p_d[0] = p_a[0];
+        p_d[1] = p_b[1];
+    }
+    else{
+        p_c[0] = p_a[0];
+        p_c[1] = p_b[1];
+        p_d[0] = p_b[0];
+        p_d[1] = p_a[1];
+    }
+    this->ponto1=p_a;
+    this->ponto2=p_c;
+    this->ponto3=p_b;
+    this->ponto4=p_d;
+
+    /*delete(p_c);
+    delete(p_d);*/
+}
+
 
 void Rect :: desenharect(int *ponto1, int *ponto2, int *ponto3, int *ponto4){
     Bresenham(ponto1,ponto2);
