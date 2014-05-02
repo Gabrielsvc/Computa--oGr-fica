@@ -39,15 +39,15 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
     mouse_pressionado=true;
 
     if(modo_desenha_ret==true){
-        ponto_inicial_mouse[0]=event->x();
-        ponto_inicial_mouse[1]=event->y();
+        ponto_inicial_mouse[0] = event->x();
+        ponto_inicial_mouse[1]=this->height() - event->y();
         r->set_rect_default(ponto_inicial_mouse,ponto_inicial_mouse);
     }
 }
 void PainelNovo :: mouseReleaseEvent(QMouseEvent *event){
     if(modo_desenha_ret==true){
         ponto_final_mouse[0] = event->x();
-        ponto_final_mouse[1] = event->y();
+        ponto_final_mouse[1] = this->height()-event->y();
         modo_desenha_ret=false;
         r->set_rect_default(ponto_inicial_mouse,ponto_final_mouse);
     }
@@ -56,7 +56,7 @@ void PainelNovo :: mouseReleaseEvent(QMouseEvent *event){
 void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
 
     ponto_corrente_mouse[0]=event->x();
-    ponto_corrente_mouse[1]=event->y();
+    ponto_corrente_mouse[1]=this->height()-event->y();
 
     if(mouse_pressionado==true && modo_desenha_ret==true){
         printf("entrou\n");
