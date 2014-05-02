@@ -4,7 +4,8 @@
 PainelNovo::PainelNovo(QWidget *parent) :
     QGLWidget(parent)
 {
-    r=new Rect();
+    /*r=new Rect();*/
+    c=new Elipse_Circulo();
     ponto_final_mouse = new int[2];
     modo_desenha_ret=false;
     ponto_corrente_mouse = new int[2];
@@ -25,7 +26,6 @@ void PainelNovo :: resizeGL( int w, int h)
 
 void PainelNovo :: initializeGL( void )
 {
-  printf("Inicializando painel\n");
 
   glDisable(GL_TEXTURE_2D);
   glDisable(GL_DEPTH_TEST);
@@ -62,7 +62,7 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
     ponto_corrente_mouse[1]=this->height()-event->y();
 
     if(mouse_pressionado==true && modo_desenha_ret==true){
-        printf("entrou\n");
+
         r->set_rect_default(ponto_inicial_mouse,ponto_corrente_mouse);
         updateGL();
     }

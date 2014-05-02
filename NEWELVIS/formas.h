@@ -7,6 +7,7 @@ class Formas
 public:
     Formas();
 protected :
+    char tipo;
     int num_pontos;
 };
 
@@ -49,22 +50,6 @@ public:
         ponto3 = new int[2];
         ponto4 = new int[2];
 
-        /*ponto1 = new int[2];
-        ponto1[0]=50;
-        ponto1[1]=50;
-
-        ponto2 = new int[2];
-        ponto2[0] = 200;
-        ponto2[1] = 50;
-
-        ponto3 = new int[2];
-        ponto3[0] = 200;
-        ponto3[1] = 200;
-
-        ponto4 = new int[2];
-        ponto4[0] = 50;
-        ponto4[1] = 200;
-        //this->desenharect(ponto1,ponto2,ponto3,ponto4);*/
     }
 
     void set_rect_default(int*,int*);
@@ -101,4 +86,38 @@ public:
     void set_ponto4(int* ponto_entrada){
         ponto4 = ponto_entrada;
     }
+};
+
+class Elipse_Circulo : public Poligono
+{
+    int* centro;
+    int raio1;
+    int raio2;
+
+public:
+    Elipse_Circulo(char tipo){
+       preenchido = false;
+       this->tipo = tipo;
+
+   }
+    int get_raio1(){
+        return raio1;
+    }
+    void set_raio1(float raio_entrada1){
+        raio1 = raio_entrada1;
+    }
+    float get_raio2(){
+        return raio2;
+    }
+    void set_raio2(float raio_entrada){
+        raio2 = raio_entrada;
+    }
+    void set_centro(int* centro){
+        this->centro = centro;
+    }
+    int* get_centro(){
+     return centro;
+    }
+
+    void desenha_circulo(int*,int);
 };

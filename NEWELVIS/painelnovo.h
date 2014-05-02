@@ -8,7 +8,9 @@ class PainelNovo : public QGLWidget
 {
     Q_OBJECT
 public:
-    Rect *r;
+    //Rect *r;
+    Elipse_Circulo c;
+
     explicit PainelNovo(QWidget *parent = 0);
 protected:
     bool modo_desenha_ret ;

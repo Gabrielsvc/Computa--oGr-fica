@@ -37,8 +37,6 @@ void Rect :: set_rect_default(int* p_a,int* p_b){
 
 
 void Rect :: desenharect(int *ponto1, int *ponto2, int *ponto3, int *ponto4){
-    printf("Entrando no DesenhaRect\n");
-    printf("Ponto 1: X: %i Y: %i\nPonto 2: X: %i Y:%i\nPonto 3: X: %i Y: %i\nPonto 4: X:%i Y:%i\n",ponto1[0],ponto1[1],ponto2[0],ponto2[1],ponto3[0],ponto3[1],ponto4[0],ponto4[1]);
     Bresenham(ponto1,ponto2);
     Bresenham(ponto2,ponto3);
     Bresenham(ponto3,ponto4);
@@ -47,7 +45,6 @@ void Rect :: desenharect(int *ponto1, int *ponto2, int *ponto3, int *ponto4){
 
 
 void Rect :: Bresenham(int *ponto1,int *ponto2) {
-    printf("Entrando no Bresenham\n");
 
     typedef struct{
         int x;
@@ -310,5 +307,51 @@ void Rect :: Bresenham(int *ponto1,int *ponto2) {
         }
     }
 }
+
+Elipse_Circulo :: desenha_circulo(int* ponto_c, int raio){
+    int x=0;
+    int y=raio;
+    int d = 1-raio;
+    int delta_l = 3;
+    int delta_se = -2*raio+5;
+
+    glBegin( GL_POINTS );
+    glVertex2i( x + ponto_c[0], y + ponto_c[1]);
+    glVertex2i(-x + ponto_c[0], y + ponto_c[1]);
+    glVertex2i( x + ponto_c[0],-y + ponto_c[1]);
+    glVertex2i(-x + ponto_c[0],-y + ponto_c[1]);
+    glVertex2i( y + ponto_c[0], x + ponto_c[1]);
+    glVertex2i(-y + ponto_c[0], x + ponto_c[1]);
+    glVertex2i( y + ponto_c[0],-x + ponto_c[1]);
+    glVertex2i(-y + ponto_c[0],-x + ponto_c[1]);
+    glEnd( );
+
+    while(y > x){
+        if(d < 0){
+            d+=delta_l;
+            delta_l+=2;
+            delta_se+=2;
+        }
+        else{
+            d+=delta_se;
+            delta_l+=2;
+            delta_se+=4;
+            y--;
+        }
+        x++;
+
+        glBegin( GL_POINTS );
+        glVertex2i( x + ponto_c[0], y + ponto_c[1]);
+        glVertex2i(-x + ponto_c[0], y + ponto_c[1]);
+        glVertex2i( x + ponto_c[0],-y + ponto_c[1]);
+        glVertex2i(-x + ponto_c[0],-y + ponto_c[1]);
+        glVertex2i( y + ponto_c[0], x + ponto_c[1]);
+        glVertex2i(-y + ponto_c[0], x + ponto_c[1]);
+        glVertex2i( y + ponto_c[0],-x + ponto_c[1]);
+        glVertex2i(-y + ponto_c[0],-x + ponto_c[1]);
+        glEnd( );
+    }
+}
+
 
 
