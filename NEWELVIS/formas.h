@@ -10,7 +10,8 @@ typedef struct p{
 class Formas
 {
 public:
-    Formas();
+    Formas();    
+    void Bresenham(int*, int*);
 protected :
     char tipo;
     int num_pontos;
@@ -37,8 +38,11 @@ public:
         pontos = pontos_entrada;
     }
     Plinha(){
-        pontos = new ponto;
+        pontos = new ponto();
+        num_pontos = 0;
     }
+    void desenhappl(ponto*);
+    void addppl(int , int);
 
 };
 
@@ -62,7 +66,6 @@ public:
 
     void set_rect_default(int*,int*);
     void desenharect(int*, int*, int*, int*);
-    void Bresenham(int*, int*);
 
 
     int *get_ponto1(){

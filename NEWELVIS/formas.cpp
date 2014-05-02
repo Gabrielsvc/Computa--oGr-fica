@@ -34,7 +34,30 @@ void Rect :: set_rect_default(int* p_a,int* p_b){
     /*delete(p_c);
     delete(p_d);*/
 }
+void Plinha :: addppl(int x1, int y1){
+    ponto *aux = new ponto();
+    aux = pontos;
+    ponto *aux2 = new ponto();
+    while(pontos->prox != NULL){
+        pontos = pontos->prox;
+    }
+    pontos->prox = aux2;
+    pontos->prox->x = x1;
+    pontos->prox->y = y1;
+    pontos = aux;
+}
 
+void Plinha :: desenhappl(ponto *pontos){
+    while(pontos->prox != NULL){
+        int ponto1[2],ponto2[2];
+        ponto1[0]= pontos->x;
+        ponto1[1]= pontos->y;
+        ponto2[0]= pontos->prox->x;
+        ponto2[1]= pontos->prox->y;
+        Bresenham(ponto1,ponto2);
+        pontos = pontos->prox;
+    }
+}
 
 void Rect :: desenharect(int *ponto1, int *ponto2, int *ponto3, int *ponto4){
     Bresenham(ponto1,ponto2);
@@ -44,7 +67,7 @@ void Rect :: desenharect(int *ponto1, int *ponto2, int *ponto3, int *ponto4){
 }
 
 
-void Rect :: Bresenham(int *ponto1,int *ponto2) {
+void Formas :: Bresenham(int *ponto1,int *ponto2) {
 
     typedef struct{
         int x;

@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" rowspan="3">
+    <item row="0" column="0" rowspan="4">
      <widget class="PainelNovo" name="Painel" native="true"/>
     </item>
     <item row="0" column="1">
@@ -38,7 +38,7 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="1">
+    <item row="3" column="1">
      <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -50,6 +50,13 @@
        </size>
       </property>
      </spacer>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>Polilinha</string>
+      </property>
+     </widget>
     </item>
    </layout>
   </widget>
@@ -82,6 +89,7 @@
    <container>1</container>
    <slots>
     <slot>iteracaorect()</slot>
+    <slot>iteracaopll()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -116,6 +124,22 @@
     <hint type="destinationlabel">
      <x>424</x>
      <y>151</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>Painel</receiver>
+   <slot>iteracaopll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>509</x>
+     <y>127</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>418</x>
+     <y>221</y>
     </hint>
    </hints>
   </connection>

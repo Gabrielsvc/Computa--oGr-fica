@@ -6,7 +6,8 @@ PainelNovo::PainelNovo(QWidget *parent) :
     QGLWidget(parent)
 {
     /*r=new Rect();*/
-    c=new Elipse_Circulo('c');
+    c = new Elipse_Circulo('c');
+    pl = new Plinha();
     ponto_final_mouse = new int[2];
     modo_desenha_ret=false;
     modo_desenha_pll=false;
@@ -48,18 +49,19 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
         ponto_inicial_mouse[1]=this->height() - event->y();
         //r->set_rect_default(ponto_inicial_mouse,ponto_inicial_mouse);
     }
-    if(modo_desenha_pll){
-
-
-
-    }
 }
+
 void PainelNovo :: mouseReleaseEvent(QMouseEvent *event){
     if(modo_desenha_ret==true){
         ponto_final_mouse[0] = event->x();
         ponto_final_mouse[1] = this->height()-event->y();
         modo_desenha_ret=false;
         //r->set_rect_default(ponto_inicial_mouse,ponto_final_mouse);
+    }
+    if(modo_desenha_pll){
+        ponto_corrente_mouse[0] = event->x();
+        ponto_corrente_mouse[1] = this->height() - event->y();
+
     }
     mouse_pressionado=false;
 }
@@ -69,9 +71,14 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
     ponto_corrente_mouse[1]=this->height()-event->y();
 
     if(mouse_pressionado==true && modo_desenha_ret==true){
-
         //r->set_rect_default(ponto_inicial_mouse,ponto_corrente_mouse);
         updateGL();
+    }
+
+    if(!mouse_pressionado && modo_desenha_pll){
+        pl->addppl(ponto_corrente_mouse[0], ponto_corrente_mouse[1]);
+        updateGL();
+
     }
 }
 

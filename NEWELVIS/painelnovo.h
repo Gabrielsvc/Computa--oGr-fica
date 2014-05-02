@@ -10,6 +10,7 @@ class PainelNovo : public QGLWidget
 public:
     //Rect *r;
     Elipse_Circulo* c;
+    Plinha pl;
 
     explicit PainelNovo(QWidget *parent = 0);
 protected:
