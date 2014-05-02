@@ -51,8 +51,6 @@ void Rect :: Bresenham(int *ponto1,int *ponto2) {
     }vetor;
 
     vetor T[2];
-    //T[0] = {0,0};
-    //T[1] = {0,0};
     int delta_x,delta_y,p_k,x,y;
     int i,j;
         float  m;

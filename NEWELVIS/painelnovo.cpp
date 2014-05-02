@@ -63,7 +63,6 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
         r->set_rect_default(ponto_inicial_mouse,ponto_corrente_mouse);
         updateGL();
     }
-    //printf("%d\t%d\n",ponto_corrente_mouse[0],ponto_corrente_mouse[1]);
 }
 
 
@@ -71,18 +70,10 @@ void PainelNovo :: paintGL( void )
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1,1,1);
-    //r = new Rect();
     r->desenharect(r->get_ponto1(),r->get_ponto2(),r->get_ponto3(),r->get_ponto4());
-    //r->desenharect_default(ponto_inicial_mouse,ponto_corrente_mouse);
 
     glColor3f(1,0,0);
 
-    /*glBegin(GL_POLYGON);
-    glVertex2f(0,0);
-    glVertex2f(100,500);
-    glVertex2f(100,100);
-    glEnd();*/
-    // Flush the pipeline, swap the buffers
     glFlush();
 
 }

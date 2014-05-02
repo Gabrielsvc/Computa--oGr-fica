@@ -429,7 +429,8 @@ moc_mainwindow.cpp: /usr/include/qt5/QtWidgets/QMainWindow \
 		../NEWELVIS/mainwindow.h
 	/usr/lib/i386-linux-gnu/qt5/bin/moc $(DEFINES) $(INCPATH) -I/usr/include/c++/4.8 -I/usr/include/i386-linux-gnu/c++/4.8 -I/usr/include/c++/4.8/backward -I/usr/lib/gcc/i686-linux-gnu/4.8/include -I/usr/local/include -I/usr/lib/gcc/i686-linux-gnu/4.8/include-fixed -I/usr/include/i386-linux-gnu -I/usr/include ../NEWELVIS/mainwindow.h -o moc_mainwindow.cpp
 
-moc_painelnovo.cpp: /usr/include/qt5/QtOpenGL/QGLWidget \
+moc_painelnovo.cpp: ../NEWELVIS/formas.h \
+		/usr/include/qt5/QtOpenGL/QGLWidget \
 		/usr/include/qt5/QtOpenGL/qgl.h \
 		/usr/include/qt5/QtGui/qopengl.h \
 		/usr/include/qt5/QtCore/qglobal.h \
@@ -560,6 +561,7 @@ compiler_uic_clean:
 	-$(DEL_FILE) ui_mainwindow.h
 ui_mainwindow.h: ../NEWELVIS/mainwindow.ui \
 		../NEWELVIS/painelnovo.h \
+		../NEWELVIS/formas.h \
 		/usr/include/qt5/QtOpenGL/QGLWidget \
 		/usr/include/qt5/QtOpenGL/qgl.h \
 		/usr/include/qt5/QtGui/qopengl.h \
@@ -975,6 +977,7 @@ mainwindow.o: ../NEWELVIS/mainwindow.cpp ../NEWELVIS/mainwindow.h \
 		/usr/include/qt5/QtWidgets/qtoolbar.h \
 		/usr/include/qt5/QtWidgets/QWidget \
 		../NEWELVIS/painelnovo.h \
+		../NEWELVIS/formas.h \
 		/usr/include/qt5/QtOpenGL/QGLWidget \
 		/usr/include/qt5/QtOpenGL/qgl.h \
 		/usr/include/qt5/QtGui/qopengl.h \
@@ -995,6 +998,7 @@ formas.o: ../NEWELVIS/formas.cpp ../NEWELVIS/formas.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formas.o ../NEWELVIS/formas.cpp
 
 painelnovo.o: ../NEWELVIS/painelnovo.cpp ../NEWELVIS/painelnovo.h \
+		../NEWELVIS/formas.h \
 		/usr/include/qt5/QtOpenGL/QGLWidget \
 		/usr/include/qt5/QtOpenGL/qgl.h \
 		/usr/include/qt5/QtGui/qopengl.h \
@@ -1115,7 +1119,8 @@ painelnovo.o: ../NEWELVIS/painelnovo.cpp ../NEWELVIS/painelnovo.h \
 		/usr/include/qt5/QtOpenGL/qglcolormap.h \
 		/usr/include/qt5/QtOpenGL/qtopenglglobal.h \
 		/usr/include/qt5/QtGui/QSurfaceFormat \
-		/usr/include/qt5/QtGui/qsurfaceformat.h
+		/usr/include/qt5/QtGui/qsurfaceformat.h \
+		/usr/include/qt5/QtGui/QMouseEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o painelnovo.o ../NEWELVIS/painelnovo.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
