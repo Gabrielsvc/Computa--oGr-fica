@@ -8,6 +8,7 @@ PainelNovo::PainelNovo(QWidget *parent) :
     c=new Elipse_Circulo();
     ponto_final_mouse = new int[2];
     modo_desenha_ret=false;
+    modo_desenha_pll=false;
     ponto_corrente_mouse = new int[2];
     ponto_inicial_mouse = new int[2];
     setMouseTracking(true);
@@ -45,6 +46,11 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
         ponto_inicial_mouse[0] = event->x();
         ponto_inicial_mouse[1]=this->height() - event->y();
         r->set_rect_default(ponto_inicial_mouse,ponto_inicial_mouse);
+    }
+    if(modo_desenha_pll){
+
+
+
     }
 }
 void PainelNovo :: mouseReleaseEvent(QMouseEvent *event){

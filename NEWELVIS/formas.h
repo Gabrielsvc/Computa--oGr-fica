@@ -1,6 +1,10 @@
 #ifndef FORMAS_H
 #define FORMAS_H
 #include "GL/gl.h"
+struct{
+    int x,y;
+    ponto *prox;
+}ponto;
 
 class Formas
 {
@@ -23,13 +27,16 @@ protected :
 class Plinha : public Formas
 {
 protected :
-    int* pontos;
+    ponto* pontos;
 public:
-    int* get_pontos(){
+    ponto* get_pontos(){
         return pontos;
     }
-    void set_pontos(int* pontos_entrada){
+    void set_pontos(ponto* pontos_entrada){
         pontos = pontos_entrada;
+    }
+    Plinha(){
+        pontos = new ponto;
     }
 
 };

@@ -13,7 +13,8 @@ public:
 
     explicit PainelNovo(QWidget *parent = 0);
 protected:
-    bool modo_desenha_ret ;
+    bool modo_desenha_ret;
+    bool modo_desenha_pll;
     bool mouse_pressionado;
     int* ponto_inicial_mouse;
     int* ponto_final_mouse;
@@ -30,6 +31,9 @@ signals:
 public slots:
     void iteracaorect(){
         modo_desenha_ret = true;
+    }
+    void iteracaopll(){
+        modo_desenha_pll = true;
     }
 
 };
