@@ -308,7 +308,7 @@ void Rect :: Bresenham(int *ponto1,int *ponto2) {
     }
 }
 
-Elipse_Circulo :: desenha_circulo(int* ponto_c, int raio){
+void Elipse_Circulo :: desenha_circulo(int* ponto_c, int raio){
     int x=0;
     int y=raio;
     int d = 1-raio;

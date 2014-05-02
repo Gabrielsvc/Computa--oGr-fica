@@ -1,9 +1,10 @@
 #ifndef FORMAS_H
 #define FORMAS_H
 #include "GL/gl.h"
-struct{
+
+typedef struct p{
     int x,y;
-    ponto *prox;
+    struct p *prox;
 }ponto;
 
 class Formas
@@ -105,7 +106,6 @@ public:
     Elipse_Circulo(char tipo){
        preenchido = false;
        this->tipo = tipo;
-
    }
     int get_raio1(){
         return raio1;
