@@ -20,7 +20,7 @@ void PainelNovo :: resizeGL( int w, int h)
         glLoadIdentity();
         glOrtho(0,w,0,h, -1.0,1.0);
         glMatrixMode(GL_MODELVIEW);
-        glClearColor(0,0,0,0);
+        glClearColor(1,1,1,0);
 }
 
 void PainelNovo :: initializeGL( void )
@@ -33,7 +33,7 @@ void PainelNovo :: initializeGL( void )
   glEnable(GL_BLEND);
   glEnable(GL_POLYGON_SMOOTH);
   glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
-  glClearColor(0,0,0,0);
+  glClearColor(1,1,1,0);
 
 }
 
@@ -72,10 +72,10 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
 void PainelNovo :: paintGL( void )
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    glColor3f(1,1,1);
+    glColor3f(1,0,0);
     r->desenharect(r->get_ponto1(),r->get_ponto2(),r->get_ponto3(),r->get_ponto4());
 
-    glColor3f(1,0,0);
+    //glColor3f(1,0,0);
     //Utilização do loop do OpenGL
     /*glBegin(GL_POLYGON);
     glVertex2d(r->get_ponto1()[0],r->get_ponto1()[1]);
