@@ -38,6 +38,19 @@
       </property>
      </widget>
     </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="maximumSize">
+       <size>
+        <width>99</width>
+        <height>27</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>círculo</string>
+      </property>
+     </widget>
+    </item>
     <item row="3" column="1">
      <spacer name="verticalSpacer">
       <property name="orientation">
@@ -89,7 +102,8 @@
    <container>1</container>
    <slots>
     <slot>iteracaorect()</slot>
-    <slot>iteracaopll()</slot>
+
+    <slot>iteracaocirc()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -131,15 +145,15 @@
    <sender>pushButton_3</sender>
    <signal>clicked()</signal>
    <receiver>Painel</receiver>
-   <slot>iteracaopll()</slot>
+   <slot>iteracaocirc()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>509</x>
-     <y>127</y>
+     <x>525</x>
+     <y>131</y>
     </hint>
     <hint type="destinationlabel">
-     <x>418</x>
-     <y>221</y>
+     <x>335</x>
+     <y>211</y>
     </hint>
    </hints>
   </connection>

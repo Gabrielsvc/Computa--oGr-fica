@@ -332,6 +332,7 @@ void Formas :: Bresenham(int *ponto1,int *ponto2) {
 }
 
 void Elipse_Circulo :: desenha_circulo(int* ponto_c, int raio){
+
     int x=0;
     int y=raio;
     int d = 1-raio;
@@ -348,6 +349,7 @@ void Elipse_Circulo :: desenha_circulo(int* ponto_c, int raio){
     glVertex2i( y + ponto_c[0],-x + ponto_c[1]);
     glVertex2i(-y + ponto_c[0],-x + ponto_c[1]);
     glEnd( );
+
 
     while(y > x){
         if(d < 0){

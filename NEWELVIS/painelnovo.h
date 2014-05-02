@@ -1,6 +1,8 @@
 #ifndef PAINELNOVO_H
 #define PAINELNOVO_H
 
+#include <math.h>
+#include <cmath>
 #include "formas.h"
 #include <QGLWidget>
 
@@ -14,6 +16,7 @@ public:
 
     explicit PainelNovo(QWidget *parent = 0);
 protected:
+    bool modo_desenha_circ;
     bool modo_desenha_ret;
     bool modo_desenha_pll;
     bool mouse_pressionado;
@@ -36,7 +39,9 @@ public slots:
     void iteracaopll(){
         modo_desenha_pll = true;
     }
-
+    void iteracaocirc(){
+        modo_desenha_circ = true;
+    }
 };
 
 #endif // PAINELNOVO_H
