@@ -107,11 +107,12 @@ class Elipse_Circulo : public Poligono
 
 public:
     Elipse_Circulo(char tipo){
-       preenchido = false;
-       this->tipo = tipo;
-       centro = new int[2];
-       centro[0]=0;
-       centro[1]=0;
+        preenchido = false;
+        this->tipo = tipo;
+
+        centro = new int[2];
+        centro[0]=0;
+        centro[1]=0;
    }
     int get_raio1(){
         return raio1;
@@ -119,7 +120,7 @@ public:
     void set_raio1(int raio_entrada1){
         raio1 = raio_entrada1;
     }
-    float get_raio2(){
+    int get_raio2(){
         return raio2;
     }
     void set_raio2(int raio_entrada){
@@ -134,4 +135,5 @@ public:
     }
 
     void desenha_circulo(int*,int);
+    void desenha_elipse(int,int,int*);
 };

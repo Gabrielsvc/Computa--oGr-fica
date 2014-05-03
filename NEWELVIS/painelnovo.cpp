@@ -5,14 +5,16 @@
 PainelNovo::PainelNovo(QWidget *parent) :
     QGLWidget(parent)
 {
-    /*r=new Rect();*/
+    r=new Rect();
     c = new Elipse_Circulo('c');
-    pl = new Plinha();
+    //pl = new Plinha();
+    e = new Elipse_Circulo('e');
 
     ponto_final_mouse = new int[2];
     modo_desenha_ret=false;
     modo_desenha_pll=false;
     modo_desenha_circ=false;
+    modo_desenha_elip=false;
     ponto_corrente_mouse = new int[2];
     ponto_inicial_mouse = new int[2];
     setMouseTracking(true);
@@ -48,7 +50,7 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
     if(modo_desenha_ret==true){
         ponto_inicial_mouse[0] = event->x();
         ponto_inicial_mouse[1]=this->height() - event->y();
-        //r->set_rect_default(ponto_inicial_mouse,ponto_inicial_mouse);
+        r->set_rect_default(ponto_inicial_mouse,ponto_inicial_mouse);
     }
 
     if(modo_desenha_circ){
@@ -57,6 +59,17 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
         c->set_centro(ponto_inicial_mouse[0],ponto_inicial_mouse[1]);
         c->set_raio1(1);
     }
+    if(modo_desenha_elip){
+        ponto_inicial_mouse[0] = event->x();
+        ponto_inicial_mouse[1] = this->height() - event->y();
+
+        printf("%i\n",ponto_inicial_mouse[0]);
+        printf("%i\n",ponto_inicial_mouse[1]);
+        e->set_centro(ponto_inicial_mouse[0],ponto_inicial_mouse[1]);
+        e->set_raio1(1);
+        e->set_raio2(1);
+        //printf("%i %i %i %iaki\n",e->get_raio1(),e->get_raio2(),e->get_centro()[0],e->get_centro()[1]);
+    }
 }
 
 void PainelNovo :: mouseReleaseEvent(QMouseEvent *event){
@@ -64,7 +77,7 @@ void PainelNovo :: mouseReleaseEvent(QMouseEvent *event){
         ponto_final_mouse[0] = event->x();
         ponto_final_mouse[1] = this->height()-event->y();
         modo_desenha_ret=false;
-        //r->set_rect_default(ponto_inicial_mouse,ponto_final_mouse);
+        r->set_rect_default(ponto_inicial_mouse,ponto_final_mouse);
     }
     if(modo_desenha_pll){
         ponto_corrente_mouse[0] = event->x();
@@ -76,6 +89,11 @@ void PainelNovo :: mouseReleaseEvent(QMouseEvent *event){
         ponto_final_mouse[1] = this->height()-event->y();
         modo_desenha_circ=false;
     }
+    if(modo_desenha_elip){
+        ponto_final_mouse[0] = event->x();
+        ponto_final_mouse[1] = this->height()-event->y();
+        modo_desenha_elip=false;
+    }
     mouse_pressionado=false;
 }
 void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
@@ -84,7 +102,7 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
     ponto_corrente_mouse[1]=this->height()-event->y();
 
     if(mouse_pressionado==true && modo_desenha_ret==true){
-        //r->set_rect_default(ponto_inicial_mouse,ponto_corrente_mouse);
+        r->set_rect_default(ponto_inicial_mouse,ponto_corrente_mouse);
         updateGL();
     }
 
@@ -100,9 +118,16 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
                               (ponto_corrente_mouse[1]-c->get_centro()[1]));
         //int r_aux=ponto_corrente_mouse[0];
         c->set_raio1(r_aux);
-        printf("%i %i\n",c->get_centro()[0],c->get_centro()[1]);
-        printf("%i\n",c->get_raio1());
-        //r->set_rect_default(ponto_inicial_mouse,ponto_corrente_mouse);
+
+        r->set_rect_default(ponto_inicial_mouse,ponto_corrente_mouse);
+
+        updateGL();
+
+    }
+    if(mouse_pressionado && modo_desenha_elip){
+
+        e->set_raio1((int)abs(ponto_corrente_mouse[0]-e->get_centro()[0]));
+        e->set_raio2((int)abs(ponto_corrente_mouse[1]-e->get_centro()[1]));
 
         updateGL();
 
@@ -115,11 +140,13 @@ void PainelNovo :: paintGL( void )
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1,0,0);
 
-    //r->desenharect(r->get_ponto1(),r->get_ponto2(),r->get_ponto3(),r->get_ponto4());
-    printf("%i aa\n",c->get_centro()[0]);
+    r->desenharect(r->get_ponto1(),r->get_ponto2(),r->get_ponto3(),r->get_ponto4());
+    //printf("%i aa\n",c->get_centro()[0]);
     //exit(0);
+
     c->desenha_circulo(c->get_centro(),c->get_raio1());
 
+    //e->desenha_elipse(e->get_raio1(),e->get_raio2(),e->get_centro());
     //glColor3f(1,0,0);
     //Utilização do loop do OpenGL
     /*glBegin(GL_POLYGON);
