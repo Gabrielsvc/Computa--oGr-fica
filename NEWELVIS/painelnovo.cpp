@@ -17,6 +17,8 @@ PainelNovo::PainelNovo(QWidget *parent) :
     modo_desenha_elip=false;
     ponto_corrente_mouse = new int[2];
     ponto_inicial_mouse = new int[2];
+    ponto_corrente_mouse[0]=0;
+    ponto_corrente_mouse[1]=0;
     setMouseTracking(true);
 }
 
@@ -47,9 +49,9 @@ void PainelNovo :: initializeGL( void )
 void PainelNovo::mousePressEvent(QMouseEvent *event) {
     mouse_pressionado=true;
 
-    if(modo_desenha_ret==true){
+    if(modo_desenha_ret){
         ponto_inicial_mouse[0] = event->x();
-        ponto_inicial_mouse[1]=this->height() - event->y();
+        ponto_inicial_mouse[1] = this->height() - event->y();
         r->set_rect_default(ponto_inicial_mouse,ponto_inicial_mouse);
     }
 
@@ -63,12 +65,15 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
         ponto_inicial_mouse[0] = event->x();
         ponto_inicial_mouse[1] = this->height() - event->y();
 
-        printf("%i\n",ponto_inicial_mouse[0]);
-        printf("%i\n",ponto_inicial_mouse[1]);
         e->set_centro(ponto_inicial_mouse[0],ponto_inicial_mouse[1]);
         e->set_raio1(1);
         e->set_raio2(1);
-        //printf("%i %i %i %iaki\n",e->get_raio1(),e->get_raio2(),e->get_centro()[0],e->get_centro()[1]);
+    }
+    if(modo_desenha_pll){
+        ponto_inicial_mouse[0] = event->x();
+        ponto_inicial_mouse[1] = this->height() - event->y();
+        ponto_corrente_mouse[0]=ponto_inicial_mouse[0];
+        ponto_corrente_mouse[1]=ponto_inicial_mouse[1];
     }
 }
 
@@ -107,7 +112,8 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
         updateGL();
     }
 
-    if(!mouse_pressionado && modo_desenha_pll){
+    if(!mouse_pressionado && modo_desenha_pll && pl->get_pontos()->prox!=NULL){
+
         pl->desenhappl(pl->get_pontos(),ponto_corrente_mouse);
         updateGL();
     }
@@ -118,7 +124,7 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
                               (ponto_corrente_mouse[0]-c->get_centro()[0])+
                               (ponto_corrente_mouse[1]-c->get_centro()[1])*
                               (ponto_corrente_mouse[1]-c->get_centro()[1]));
-        //int r_aux=ponto_corrente_mouse[0];
+
         c->set_raio1(r_aux);
 
         r->set_rect_default(ponto_inicial_mouse,ponto_corrente_mouse);
@@ -147,21 +153,11 @@ void PainelNovo :: paintGL( void )
     //exit(0);
 
     //c->desenha_circulo(c->get_centro(),c->get_raio1());
+
     pl->desenhappl(pl->get_pontos(),ponto_corrente_mouse);
 
-    e->desenha_elipse(e->get_raio1(),e->get_raio2(),e->get_centro());
-    //glColor3f(1,0,0);
-    //Utilização do loop do OpenGL
-    /*glBegin(GL_POLYGON);
-    glVertex2d(r->get_ponto1()[0],r->get_ponto1()[1]);
+    //e->desenha_elipse(e->get_raio1(),e->get_raio2(),e->get_centro());
 
-    glVertex2d(r->get_ponto2()[0],r->get_ponto2()[1]);
-
-    glVertex2d(r->get_ponto3()[0],r->get_ponto3()[1]);
-
-    glVertex2d(r->get_ponto4()[0],r->get_ponto4()[1]);
-    glEnd();
-    */
     glFlush();
 
 }

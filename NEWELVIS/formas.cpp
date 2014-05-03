@@ -49,15 +49,20 @@ void Plinha :: addppl(int x1, int y1){
 
 void Plinha :: desenhappl(ponto *pontos, int *pontomouse){
     int ponto1[2],ponto2[2];
-    while(pontos->prox != NULL){
-        ponto1[0]= pontos->x;
-        ponto1[1]= pontos->y;
-        ponto2[0]= pontos->prox->x;
-        ponto2[1]= pontos->prox->y;
-        Bresenham(ponto1,ponto2);
-        pontos = pontos->prox;
+
+    /*Gabriel coloquei este if porque há um problema de inicialização, percebe?*/
+    if(pontos->prox !=NULL){
+        while(pontos->prox != NULL){
+            ponto1[0]= pontos->x;
+            ponto1[1]= pontos->y;
+            ponto2[0]= pontos->prox->x;
+            ponto2[1]= pontos->prox->y;
+            Bresenham(ponto1,ponto2);
+            pontos = pontos->prox;
+        }
+        Bresenham(ponto2,pontomouse);
     }
-    Bresenham(ponto2,pontomouse);
+
 }
 
 void Rect :: desenharect(int *ponto1, int *ponto2, int *ponto3, int *ponto4){
@@ -392,14 +397,12 @@ void Elipse_Circulo :: desenha_elipse(int raio_x,int raio_y,int* ponto_c){
     p_x=0;
     p_y = 2 * raio_xquad * y;
 
-        printf("nadlajds1\n");
     glBegin(GL_POINTS);
     glVertex2i(ponto_c[0]+x,ponto_c[1]+y);
     glVertex2i(ponto_c[0]-x,ponto_c[1]+y);
     glVertex2i(ponto_c[0]+x,ponto_c[1]-y);
     glVertex2i(ponto_c[0]-x,ponto_c[1]-y);
     glEnd();
-        printf("nadlajds2\n");
 
     P = round(raio_yquad - (raio_xquad*raio_y) + 0.25*raio_xquad);
 

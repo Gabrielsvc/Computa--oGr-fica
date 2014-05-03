@@ -31,7 +31,7 @@ protected:
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
     void mouseReleaseEvent(QMouseEvent *event);
-
+    void mouseLeftButton(QMouseEvent* event);
 signals:
 
 public slots:
@@ -39,19 +39,25 @@ public slots:
         modo_desenha_ret = true;
         modo_desenha_circ = false;
         modo_desenha_elip = false;
+        modo_desenha_pll = false;
     }
     void iteracaopll(){
         modo_desenha_pll = true;
+        modo_desenha_circ = false;
+        modo_desenha_elip = false;
+        modo_desenha_ret = false;
     }
     void iteracaocirc(){
         modo_desenha_circ = true;
         modo_desenha_elip = false;
         modo_desenha_ret = false;
+        modo_desenha_pll = false;
     }
     void iteracaoelip(){
         modo_desenha_elip = true;
         modo_desenha_circ = false;
         modo_desenha_ret=false;
+        modo_desenha_pll = false;
     }
 };
 
