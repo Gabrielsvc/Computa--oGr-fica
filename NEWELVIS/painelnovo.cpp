@@ -5,6 +5,7 @@
 PainelNovo::PainelNovo(QWidget *parent) :
     QGLWidget(parent)
 {
+    p=new Elipse_Circulo('c');
     r=new Rect();
     c = new Elipse_Circulo('c');
     pl = new Plinha();
@@ -16,11 +17,12 @@ PainelNovo::PainelNovo(QWidget *parent) :
     modo_desenha_pll=false;
     modo_desenha_circ=false;
     modo_desenha_elip=false;
+    modo_desenha_ponto=false;
     ponto_corrente_mouse = new int[2];
     ponto_inicial_mouse = new int[2];
-    ponto_corrente_mouse[0]=0;
-    ponto_corrente_mouse[1]=0;
+
     setMouseTracking(true);
+    mouse_pressionado = false;
 }
 
 
@@ -71,15 +73,28 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
         e->set_raio1(1);
         e->set_raio2(1);
     }
-    if(modo_desenha_pll){
+    if( modo_desenha_pll && event->button()==Qt::LeftButton){
+
         ponto_inicial_mouse[0] = event->x();
         ponto_inicial_mouse[1] = this->height() - event->y();
         ponto_corrente_mouse[0]=ponto_inicial_mouse[0];
         ponto_corrente_mouse[1]=ponto_inicial_mouse[1];
     }
+    if(modo_desenha_pll && event->button()==Qt::RightButton){
+        modo_desenha_pll=false;
+
+    }
+    if(modo_desenha_ponto && event->button()==Qt::LeftButton){
+        ponto_inicial_mouse[0] = event->x();
+        ponto_inicial_mouse[1]=this->height() - event->y();
+        p->set_centro(ponto_inicial_mouse[0],ponto_inicial_mouse[1]);
+        p->set_raio1(1);
+        updateGL();
+    }
 }
 
 void PainelNovo :: mouseReleaseEvent(QMouseEvent *event){
+
     if(modo_desenha_ret==true){
         ponto_final_mouse[0] = event->x();
         ponto_final_mouse[1] = this->height()-event->y();
@@ -87,8 +102,7 @@ void PainelNovo :: mouseReleaseEvent(QMouseEvent *event){
         r->set_rect_default(ponto_inicial_mouse,ponto_final_mouse);
     }
     if(modo_desenha_pll){
-        pl->addppl(ponto_corrente_mouse[0], ponto_corrente_mouse[1]);
-        updateGL();
+        pl->add_ponto_lista(ponto_corrente_mouse[0], ponto_corrente_mouse[1]);
 
     }
 
@@ -110,14 +124,16 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
     ponto_corrente_mouse[1]=this->height()-event->y();
 
     if(mouse_pressionado==true && modo_desenha_ret==true){
+
         r->set_rect_default(ponto_inicial_mouse,ponto_corrente_mouse);
         updateGL();
     }
 
-    if(!mouse_pressionado && modo_desenha_pll && pl->get_pontos()->prox!=NULL){
+    if(!mouse_pressionado && modo_desenha_pll && pl->get_num_pontos()!=0){
 
-        pl->desenhappl(pl->get_pontos(),ponto_corrente_mouse);
+        pl->add_ponto_lista(ponto_corrente_mouse[0],ponto_corrente_mouse[1]);
         updateGL();
+        pl->remove_ponto_lista();
     }
 
     if(mouse_pressionado && modo_desenha_circ){
@@ -145,6 +161,7 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
 }
 
 
+
 void PainelNovo :: paintGL( void )
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -152,15 +169,10 @@ void PainelNovo :: paintGL( void )
 
     //r->desenharect(r->get_ponto1(),r->get_ponto2(),r->get_ponto3(),r->get_ponto4());
 
-    //exit(0);
-
     //c->desenha_circulo(c->get_centro(),c->get_raio1());
 
-
-    pl->desenhappl(pl->get_pontos(),ponto_corrente_mouse);
-
-    printf("Cheguei aque!!!!!!!!!\n");
-    exit(0);
+    pl->desenha_polilinha();
+    //p->desenha_circulo(p->get_centro(),p->get_raio1());
 
     //e->desenha_elipse(e->get_raio1(),e->get_raio2(),e->get_centro());
 

@@ -2,6 +2,7 @@
 #define PAINELNOVO_H
 
 #include <math.h>
+#include <stdio.h>
 #include <cmath>
 #include "formas.h"
 #include <QGLWidget>
@@ -11,6 +12,7 @@ class PainelNovo : public QGLWidget
     Q_OBJECT
 public:
     Rect *r;
+    Elipse_Circulo* p;
     Elipse_Circulo* c;
     Elipse_Circulo* e;
     Plinha *pl;
@@ -21,6 +23,7 @@ protected:
     bool modo_desenha_circ;
     bool modo_desenha_ret;
     bool modo_desenha_pll;
+    bool modo_desenha_ponto;
     bool mouse_pressionado;
     int* ponto_inicial_mouse;
     int* ponto_final_mouse;
@@ -31,7 +34,6 @@ protected:
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
     void mouseReleaseEvent(QMouseEvent *event);
-    void mouseLeftButton(QMouseEvent* event);
 signals:
 
 public slots:
@@ -40,24 +42,35 @@ public slots:
         modo_desenha_circ = false;
         modo_desenha_elip = false;
         modo_desenha_pll = false;
+        modo_desenha_ponto = true;
     }
     void iteracaopll(){
         modo_desenha_pll = true;
         modo_desenha_circ = false;
         modo_desenha_elip = false;
         modo_desenha_ret = false;
+        modo_desenha_ponto = false;
     }
     void iteracaocirc(){
         modo_desenha_circ = true;
         modo_desenha_elip = false;
         modo_desenha_ret = false;
         modo_desenha_pll = false;
+        modo_desenha_ponto = false;
     }
     void iteracaoelip(){
         modo_desenha_elip = true;
         modo_desenha_circ = false;
         modo_desenha_ret=false;
         modo_desenha_pll = false;
+        modo_desenha_ponto=false;
+    }
+    void iteracaoponto(){
+        modo_desenha_elip = false;
+        modo_desenha_circ = false;
+        modo_desenha_ret=false;
+        modo_desenha_pll = false;
+        modo_desenha_ponto = true;
     }
 };
 

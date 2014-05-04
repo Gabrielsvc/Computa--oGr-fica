@@ -34,48 +34,71 @@ void Rect :: set_rect_default(int* p_a,int* p_b){
     /*delete(p_c);
     delete(p_d);*/
 }
-void Plinha :: addppl(int x1, int y1){
-    ponto *aux = new ponto();
-    aux = pontos;
-    ponto *aux2 = new ponto();
-    if(this->num_pontos != 0){
-        while(pontos->prox != NULL){
-            pontos = pontos->prox;
-        }
-        pontos->prox = aux2;
-        pontos->prox->x = x1;
-        pontos->prox->y = y1;
-        pontos = aux;
-    }
-    else{
-        pontos->x = x1;
-        pontos->y = y1;
-        pontos->prox = aux2;
-    }
+void Plinha :: add_ponto_lista(int x, int y){
+    pontos* aux;
+    pontos* newPoint;
+
+    aux = this->cab_lista_pontos;
+
+    newPoint = new pontos();
+    newPoint->x = x;
+    newPoint->y = y;
+    newPoint->prox = NULL;
+
+    while(aux->prox != NULL)
+        aux=aux->prox;
+
+    aux->prox = newPoint;
     this->num_pontos += 1;
 }
 
-void Plinha :: desenhappl(ponto *pontos, int *pontomouse){
-    int ponto1[2],ponto2[2];
+void Plinha :: remove_ponto_lista(){
+    pontos *aux1,*aux2;
 
-    /*Gabriel coloquei este if porque há um problema de inicialização, percebe?*/
-    if(this->num_pontos > 1){
-        while(pontos->prox != NULL){
-            ponto1[0]= pontos->x;
-            ponto1[1]= pontos->y;
-            ponto2[0]= pontos->prox->x;
-            ponto2[1]= pontos->prox->y;
-            Bresenham(ponto1,ponto2);
-            pontos = pontos->prox;
+    aux1 = this->cab_lista_pontos;
+    aux2 = aux1->prox;
+
+    if(aux2 != NULL){
+        while(aux2 -> prox != NULL){
+            aux1 = aux2;
+            aux2 = aux2->prox;
         }
-        Bresenham(ponto2,pontomouse);
+        delete(aux2);
+        aux1->prox = NULL;
     }
-    else if(this->num_pontos == 1){
-        ponto1[0]= pontos->x;
-        ponto1[1]= pontos->y;
-        Bresenham(ponto1,pontomouse);
+    else{
+        printf("Underflow\n");
+        exit(0);
     }
+    this->num_pontos--;
+}
 
+void Plinha :: desenha_polilinha(){
+    pontos* aux;
+    int *ponto1,*ponto2;
+    ponto1 = new int[2];
+    ponto2 = new int[2];
+
+    aux = this->cab_lista_pontos->prox;
+
+    if(aux!=NULL && aux->prox!=NULL){
+
+        while(aux->prox!=NULL){
+            ponto1[0] = aux->x;
+            ponto1[1] = aux->y;
+            ponto2[0] = aux->prox->x;
+            ponto2[1] = aux->prox->y;
+
+            Bresenham(ponto1,ponto2);
+            aux=aux->prox;
+        }
+    }
+    else{
+        /*printf("Opa, tem algo errado\n");
+        exit(0);*/
+    }
+    delete(ponto1);
+    delete(ponto2);
 }
 
 void Rect :: desenharect(int *ponto1, int *ponto2, int *ponto3, int *ponto4){
@@ -351,37 +374,12 @@ void Formas :: Bresenham(int *ponto1,int *ponto2) {
 }
 
 void Elipse_Circulo :: desenha_circulo(int* ponto_c, int raio){
-    int x=0;
-    int y=raio;
-    int d = 1-raio;
-    int delta_l = 3;
-    int delta_se = -2*raio+5;
-
-    glBegin( GL_POINTS );
-    glVertex2i( x + ponto_c[0], y + ponto_c[1]);
-    glVertex2i(-x + ponto_c[0], y + ponto_c[1]);
-    glVertex2i( x + ponto_c[0],-y + ponto_c[1]);
-    glVertex2i(-x + ponto_c[0],-y + ponto_c[1]);
-    glVertex2i( y + ponto_c[0], x + ponto_c[1]);
-    glVertex2i(-y + ponto_c[0], x + ponto_c[1]);
-    glVertex2i( y + ponto_c[0],-x + ponto_c[1]);
-    glVertex2i(-y + ponto_c[0],-x + ponto_c[1]);
-    glEnd( );
-
-
-    while(y > x){
-        if(d < 0){
-            d+=delta_l;
-            delta_l+=2;
-            delta_se+=2;
-        }
-        else{
-            d+=delta_se;
-            delta_l+=2;
-            delta_se+=4;
-            y--;
-        }
-        x++;
+    if(raio!=0){
+        int x=0;
+        int y=raio;
+        int d = 1-raio;
+        int delta_l = 3;
+        int delta_se = -2*raio+5;
 
         glBegin( GL_POINTS );
         glVertex2i( x + ponto_c[0], y + ponto_c[1]);
@@ -393,73 +391,101 @@ void Elipse_Circulo :: desenha_circulo(int* ponto_c, int raio){
         glVertex2i( y + ponto_c[0],-x + ponto_c[1]);
         glVertex2i(-y + ponto_c[0],-x + ponto_c[1]);
         glEnd( );
-    }
 
+
+        while(y > x){
+            if(d < 0){
+                d+=delta_l;
+                delta_l+=2;
+                delta_se+=2;
+            }
+            else{
+                d+=delta_se;
+                delta_l+=2;
+                delta_se+=4;
+                y--;
+            }
+            x++;
+
+            glBegin( GL_POINTS );
+            glVertex2i( x + ponto_c[0], y + ponto_c[1]);
+            glVertex2i(-x + ponto_c[0], y + ponto_c[1]);
+            glVertex2i( x + ponto_c[0],-y + ponto_c[1]);
+            glVertex2i(-x + ponto_c[0],-y + ponto_c[1]);
+            glVertex2i( y + ponto_c[0], x + ponto_c[1]);
+            glVertex2i(-y + ponto_c[0], x + ponto_c[1]);
+            glVertex2i( y + ponto_c[0],-x + ponto_c[1]);
+            glVertex2i(-y + ponto_c[0],-x + ponto_c[1]);
+            glEnd( );
+        }
+    }
 }
 
 void Elipse_Circulo :: desenha_elipse(int raio_x,int raio_y,int* ponto_c){
-    int P;
-    int p_x,p_y;
-    int x,y;
-    int raio_xquad = raio_x*raio_x;
-    int raio_yquad = raio_y*raio_y;
+    if(raio1!=0 && raio2!=0){
+        int P;
+        int p_x,p_y;
+        int x,y;
+        int raio_xquad = raio_x*raio_x;
+        int raio_yquad = raio_y*raio_y;
 
 
-    x=0;
-    y=raio_y;
-    p_x=0;
-    p_y = 2 * raio_xquad * y;
+        x=0;
+        y=raio_y;
+        p_x=0;
+        p_y = 2 * raio_xquad * y;
 
-    glBegin(GL_POINTS);
-    glVertex2i(ponto_c[0]+x,ponto_c[1]+y);
-    glVertex2i(ponto_c[0]-x,ponto_c[1]+y);
-    glVertex2i(ponto_c[0]+x,ponto_c[1]-y);
-    glVertex2i(ponto_c[0]-x,ponto_c[1]-y);
-    glEnd();
-
-    P = round(raio_yquad - (raio_xquad*raio_y) + 0.25*raio_xquad);
-
-    while(p_x < p_y){
-        x++;
-        p_x += 2* raio_yquad;
-
-        if(P<0){
-            P+= raio_yquad + p_x;
-        }
-        else{
-            y--;
-            p_y-=2*raio_xquad;
-            P+= raio_yquad + p_x - p_y;
-        }
         glBegin(GL_POINTS);
         glVertex2i(ponto_c[0]+x,ponto_c[1]+y);
         glVertex2i(ponto_c[0]-x,ponto_c[1]+y);
         glVertex2i(ponto_c[0]+x,ponto_c[1]-y);
         glVertex2i(ponto_c[0]-x,ponto_c[1]-y);
         glEnd();
-    }
 
-    P = round(raio_yquad * (x + 0.5)*(x + 0.5) + raio_xquad*(y-1)*(y-1) - raio_xquad*raio_yquad);
+        P = round(raio_yquad - (raio_xquad*raio_y) + 0.25*raio_xquad);
 
-    while(y>0){
-        y--;
-        p_y-= 2*raio_xquad;
-
-        if(P>0){
-            P+= raio_xquad - p_y;
-         }
-         else{
+        while(p_x < p_y){
             x++;
-            p_x+=2*raio_yquad;//??
-            P+= raio_xquad - p_y + p_x;
+            p_x += 2* raio_yquad;
 
-         }
-         glBegin(GL_POINTS);
-         glVertex2i(ponto_c[0]+x,ponto_c[1]+y);
-         glVertex2i(ponto_c[0]-x,ponto_c[1]+y);
-         glVertex2i(ponto_c[0]+x,ponto_c[1]-y);
-         glVertex2i(ponto_c[0]-x,ponto_c[1]-y);
-         glEnd();
+            if(P<0){
+                P+= raio_yquad + p_x;
+            }
+            else{
+                y--;
+                p_y-=2*raio_xquad;
+                P+= raio_yquad + p_x - p_y;
+            }
+            glBegin(GL_POINTS);
+            glVertex2i(ponto_c[0]+x,ponto_c[1]+y);
+            glVertex2i(ponto_c[0]-x,ponto_c[1]+y);
+            glVertex2i(ponto_c[0]+x,ponto_c[1]-y);
+            glVertex2i(ponto_c[0]-x,ponto_c[1]-y);
+            glEnd();
+        }
+
+        P = round(raio_yquad * (x + 0.5)*(x + 0.5) + raio_xquad*(y-1)*(y-1) - raio_xquad*raio_yquad);
+
+        while(y>0){
+            y--;
+            p_y-= 2*raio_xquad;
+
+            if(P>0){
+                P+= raio_xquad - p_y;
+            }
+            else{
+                x++;
+                p_x+=2*raio_yquad;//??
+                P+= raio_xquad - p_y + p_x;
+
+            }
+            glBegin(GL_POINTS);
+            glVertex2i(ponto_c[0]+x,ponto_c[1]+y);
+            glVertex2i(ponto_c[0]-x,ponto_c[1]+y);
+            glVertex2i(ponto_c[0]+x,ponto_c[1]-y);
+            glVertex2i(ponto_c[0]-x,ponto_c[1]-y);
+            glEnd();
+        }
     }
 }
 

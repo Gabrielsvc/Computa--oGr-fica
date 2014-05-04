@@ -5,13 +5,16 @@
 typedef struct p{
     int x,y;
     struct p *prox;
-}ponto;
+
+}pontos;
+
 
 class Formas
 {
 public:
     Formas();    
     void Bresenham(int*, int*);
+    int get_num_pontos(){ return num_pontos;};
 protected :
     char tipo;
     int num_pontos;
@@ -29,20 +32,19 @@ protected :
 class Plinha : public Formas
 {
 protected :
-    ponto* pontos;
+    pontos* cab_lista_pontos;
 public:
-    ponto* get_pontos(){
-        return pontos;
+    pontos* get_lista_pontos(){
+        return cab_lista_pontos;
     }
-    void set_pontos(ponto* pontos_entrada){
-        pontos = pontos_entrada;
-    }
+
     Plinha(){
-        pontos = new ponto();
+        cab_lista_pontos = new pontos();
         num_pontos = 0;
     }
-    void desenhappl(ponto*,int*);
-    void addppl(int , int);
+    void desenha_polilinha();
+    void add_ponto_lista(int , int);
+    void remove_ponto_lista();
 
 };
 
@@ -111,6 +113,7 @@ public:
         this->tipo = tipo;
 
         centro = new int[2];
+        raio1 = 0;
         centro[0]=0;
         centro[1]=0;
    }
