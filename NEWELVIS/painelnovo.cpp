@@ -7,7 +7,7 @@ PainelNovo::PainelNovo(QWidget *parent) :
 {
     r=new Rect();
     c = new Elipse_Circulo('c');
-    //pl = new Plinha();
+    pl = new Plinha();
     e = new Elipse_Circulo('e');
 
     ponto_final_mouse = new int[2];
