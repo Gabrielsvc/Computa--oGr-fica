@@ -12,6 +12,7 @@ class PainelNovo : public QGLWidget
     Q_OBJECT
 public:
     figura *list_fig;
+    figura *auxiliar;
     char tipo_atual;
     /*
     Rect *r;
@@ -41,7 +42,7 @@ signals:
 
 public slots:
     void iteracaorect(){
-        tipo_atual =
+        tipo_atual = 'r';
         modo_desenha_ret = true;
         modo_desenha_circ = false;
         modo_desenha_elip = false;
@@ -49,6 +50,7 @@ public slots:
         modo_desenha_ponto = true;
     }
     void iteracaopll(){
+        tipo_atual = 'l';
         modo_desenha_pll = true;
         modo_desenha_circ = false;
         modo_desenha_elip = false;
@@ -56,6 +58,7 @@ public slots:
         modo_desenha_ponto = false;
     }
     void iteracaocirc(){
+        tipo_atual = 'c';
         modo_desenha_circ = true;
         modo_desenha_elip = false;
         modo_desenha_ret = false;
@@ -63,6 +66,7 @@ public slots:
         modo_desenha_ponto = false;
     }
     void iteracaoelip(){
+        tipo_atual = 'e';
         modo_desenha_elip = true;
         modo_desenha_circ = false;
         modo_desenha_ret=false;
@@ -70,6 +74,7 @@ public slots:
         modo_desenha_ponto=false;
     }
     void iteracaoponto(){
+        tipo_atual = 'p';
         modo_desenha_elip = false;
         modo_desenha_circ = false;
         modo_desenha_ret=false;

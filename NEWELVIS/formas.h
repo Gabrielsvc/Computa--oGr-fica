@@ -1,11 +1,6 @@
 #ifndef FORMAS_H
 #define FORMAS_H
 #include "GL/gl.h"
-typedef struct f{
-    struct f *prox;
-    Formas *forma;
-
-}figura;
 
 typedef struct p{
     int x,y;

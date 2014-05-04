@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     formas.cpp \
-    painelnovo.cpp
+    painelnovo.cpp \
+    lista.cpp
 
 HEADERS  += mainwindow.h \
     formas.h \
-    painelnovo.h
+    painelnovo.h \
+    lista.h
 
 FORMS    += mainwindow.ui
