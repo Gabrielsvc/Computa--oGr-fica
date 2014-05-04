@@ -82,6 +82,7 @@ void PainelNovo :: mouseReleaseEvent(QMouseEvent *event){
     if(modo_desenha_pll){
         ponto_corrente_mouse[0] = event->x();
         ponto_corrente_mouse[1] = this->height() - event->y();
+
     }
 
     if(modo_desenha_circ){
@@ -144,9 +145,9 @@ void PainelNovo :: paintGL( void )
 
     //exit(0);
 
-    c->desenha_circulo(c->get_centro(),c->get_raio1());
+    //c->desenha_circulo(c->get_centro(),c->get_raio1());
 
-    //e->desenha_elipse(e->get_raio1(),e->get_raio2(),e->get_centro());
+    e->desenha_elipse(e->get_raio1(),e->get_raio2(),e->get_centro());
     //glColor3f(1,0,0);
     //Utilização do loop do OpenGL
     /*glBegin(GL_POLYGON);
