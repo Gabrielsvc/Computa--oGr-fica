@@ -117,6 +117,7 @@
     <slot>iteracaorect()</slot>
     <slot>iteracaocirc()</slot>
     <slot>iteracaoelip()</slot>
+    <slot>iteracaopll()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -183,6 +184,22 @@
     <hint type="destinationlabel">
      <x>410</x>
      <y>270</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>Painel</receiver>
+   <slot>iteracaopll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>468</x>
+     <y>156</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>437</x>
+     <y>232</y>
     </hint>
    </hints>
   </connection>

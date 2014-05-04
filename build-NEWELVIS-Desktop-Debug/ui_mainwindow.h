@@ -107,6 +107,7 @@ public:
         QObject::connect(pushButton_2, SIGNAL(clicked()), Painel, SLOT(iteracaorect()));
         QObject::connect(pushButton_3, SIGNAL(clicked()), Painel, SLOT(iteracaocirc()));
         QObject::connect(pushButton_4, SIGNAL(clicked()), Painel, SLOT(iteracaoelip()));
+        QObject::connect(pushButton_3, SIGNAL(clicked()), Painel, SLOT(iteracaopll()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi

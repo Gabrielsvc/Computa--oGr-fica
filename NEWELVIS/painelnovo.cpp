@@ -80,8 +80,8 @@ void PainelNovo :: mouseReleaseEvent(QMouseEvent *event){
         r->set_rect_default(ponto_inicial_mouse,ponto_final_mouse);
     }
     if(modo_desenha_pll){
-        ponto_corrente_mouse[0] = event->x();
-        ponto_corrente_mouse[1] = this->height() - event->y();
+        pl->addppl(ponto_corrente_mouse[0], ponto_corrente_mouse[1]);
+        updateGL();
 
     }
 
@@ -107,10 +107,6 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
         updateGL();
     }
 
-    if(!mouse_pressionado && modo_desenha_pll){
-        pl->addppl(ponto_corrente_mouse[0], ponto_corrente_mouse[1]);
-        updateGL();
-    }
     if(mouse_pressionado && modo_desenha_circ){
 
         int r_aux = (int)sqrt((ponto_corrente_mouse[0]-c->get_centro()[0])*
@@ -146,6 +142,7 @@ void PainelNovo :: paintGL( void )
     //exit(0);
 
     //c->desenha_circulo(c->get_centro(),c->get_raio1());
+    pl->desenhappl(pl->get_pontos());
 
     e->desenha_elipse(e->get_raio1(),e->get_raio2(),e->get_centro());
     //glColor3f(1,0,0);
