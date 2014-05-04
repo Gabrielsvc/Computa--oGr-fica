@@ -41,7 +41,7 @@ public:
         pontos = new ponto();
         num_pontos = 0;
     }
-    void desenhappl(ponto*);
+    void desenhappl(ponto*,int*);
     void addppl(int , int);
 
 };

@@ -107,6 +107,11 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
         updateGL();
     }
 
+    if(!mouse_pressionado && modo_desenha_pll){
+        pl->desenhappl(pl->get_pontos(),ponto_corrente_mouse);
+        updateGL();
+    }
+
     if(mouse_pressionado && modo_desenha_circ){
 
         int r_aux = (int)sqrt((ponto_corrente_mouse[0]-c->get_centro()[0])*
@@ -142,7 +147,7 @@ void PainelNovo :: paintGL( void )
     //exit(0);
 
     //c->desenha_circulo(c->get_centro(),c->get_raio1());
-    pl->desenhappl(pl->get_pontos());
+    pl->desenhappl(pl->get_pontos(),ponto_corrente_mouse);
 
     e->desenha_elipse(e->get_raio1(),e->get_raio2(),e->get_centro());
     //glColor3f(1,0,0);

@@ -47,9 +47,9 @@ void Plinha :: addppl(int x1, int y1){
     pontos = aux;
 }
 
-void Plinha :: desenhappl(ponto *pontos){
+void Plinha :: desenhappl(ponto *pontos, int *pontomouse){
+    int ponto1[2],ponto2[2];
     while(pontos->prox != NULL){
-        int ponto1[2],ponto2[2];
         ponto1[0]= pontos->x;
         ponto1[1]= pontos->y;
         ponto2[0]= pontos->prox->x;
@@ -57,6 +57,7 @@ void Plinha :: desenhappl(ponto *pontos){
         Bresenham(ponto1,ponto2);
         pontos = pontos->prox;
     }
+    Bresenham(ponto2,pontomouse);
 }
 
 void Rect :: desenharect(int *ponto1, int *ponto2, int *ponto3, int *ponto4){
