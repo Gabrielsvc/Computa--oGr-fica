@@ -10,12 +10,14 @@ class PainelNovo : public QGLWidget
 {
     Q_OBJECT
 public:
-    //Rect *r;
+    Rect *r;
     Elipse_Circulo* c;
+    Elipse_Circulo* e;
     Plinha *pl;
 
     explicit PainelNovo(QWidget *parent = 0);
 protected:
+    bool modo_desenha_elip;
     bool modo_desenha_circ;
     bool modo_desenha_ret;
     bool modo_desenha_pll;
@@ -35,12 +37,21 @@ signals:
 public slots:
     void iteracaorect(){
         modo_desenha_ret = true;
+        modo_desenha_circ = false;
+        modo_desenha_elip = false;
     }
     void iteracaopll(){
         modo_desenha_pll = true;
     }
     void iteracaocirc(){
         modo_desenha_circ = true;
+        modo_desenha_elip = false;
+        modo_desenha_ret = false;
+    }
+    void iteracaoelip(){
+        modo_desenha_elip = true;
+        modo_desenha_circ = false;
+        modo_desenha_ret=false;
     }
 };
 

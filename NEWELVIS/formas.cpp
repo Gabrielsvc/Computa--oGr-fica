@@ -332,7 +332,6 @@ void Formas :: Bresenham(int *ponto1,int *ponto2) {
 }
 
 void Elipse_Circulo :: desenha_circulo(int* ponto_c, int raio){
-
     int x=0;
     int y=raio;
     int d = 1-raio;
@@ -375,6 +374,75 @@ void Elipse_Circulo :: desenha_circulo(int* ponto_c, int raio){
         glVertex2i( y + ponto_c[0],-x + ponto_c[1]);
         glVertex2i(-y + ponto_c[0],-x + ponto_c[1]);
         glEnd( );
+    }
+
+}
+
+void Elipse_Circulo :: desenha_elipse(int raio_x,int raio_y,int* ponto_c){
+    int P;
+    int p_x,p_y;
+    int x,y;
+    int raio_xquad = raio_x*raio_x;
+    int raio_yquad = raio_y*raio_y;
+
+
+    x=0;
+    y=raio_y;
+    p_x=0;
+    p_y = 2 * raio_xquad * y;
+
+        printf("nadlajds1\n");
+    glBegin(GL_POINTS);
+    glVertex2i(ponto_c[0]+x,ponto_c[1]+y);
+    glVertex2i(ponto_c[0]-x,ponto_c[1]+y);
+    glVertex2i(ponto_c[0]+x,ponto_c[1]-y);
+    glVertex2i(ponto_c[0]-x,ponto_c[1]-y);
+    glEnd();
+        printf("nadlajds2\n");
+
+    P = round(raio_yquad - (raio_xquad*raio_y) + 0.25*raio_xquad);
+
+    while(p_x < p_y){
+        x++;
+        p_x += 2* raio_yquad;
+
+        if(P<0){
+            P+= raio_yquad + p_x;
+        }
+        else{
+            y--;
+            p_y-=2*raio_xquad;
+            P+= raio_yquad + p_x - p_y;
+        }
+        glBegin(GL_POINTS);
+        glVertex2i(ponto_c[0]+x,ponto_c[1]+y);
+        glVertex2i(ponto_c[0]-x,ponto_c[1]+y);
+        glVertex2i(ponto_c[0]+x,ponto_c[1]-y);
+        glVertex2i(ponto_c[0]-x,ponto_c[1]-y);
+        glEnd();
+    }
+
+    P = round(raio_yquad * (x + 0.5)*(x + 0.5) + raio_xquad*(y-1)*(y-1) - raio_xquad*raio_yquad);
+
+    while(y>0){
+        y--;
+        p_y-= 2*raio_xquad;
+
+        if(P>0){
+            P+= raio_xquad - p_y;
+         }
+         else{
+            x++;
+            p_x+=2*raio_yquad;//??
+            P+= raio_xquad - p_y + p_x;
+
+         }
+         glBegin(GL_POINTS);
+         glVertex2i(ponto_c[0]+x,ponto_c[1]+y);
+         glVertex2i(ponto_c[0]-x,ponto_c[1]+y);
+         glVertex2i(ponto_c[0]+x,ponto_c[1]-y);
+         glVertex2i(ponto_c[0]-x,ponto_c[1]-y);
+         glEnd();
     }
 }
 

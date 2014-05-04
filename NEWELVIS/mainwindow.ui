@@ -15,7 +15,7 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0" rowspan="5">
+    <item row="0" column="0" rowspan="6">
      <widget class="PainelNovo" name="Painel" native="true"/>
     </item>
     <item row="0" column="1">
@@ -59,6 +59,19 @@
      </widget>
     </item>
     <item row="4" column="1">
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="maximumSize">
+       <size>
+        <width>99</width>
+        <height>27</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Elipse</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1">
      <spacer name="verticalSpacer">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
@@ -103,6 +116,7 @@
    <slots>
     <slot>iteracaorect()</slot>
     <slot>iteracaocirc()</slot>
+    <slot>iteracaoelip()</slot>
    </slots>
   </customwidget>
  </customwidgets>
@@ -153,6 +167,22 @@
     <hint type="destinationlabel">
      <x>335</x>
      <y>211</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>Painel</receiver>
+   <slot>iteracaoelip()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>504</x>
+     <y>199</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>410</x>
+     <y>270</y>
     </hint>
    </hints>
   </connection>
