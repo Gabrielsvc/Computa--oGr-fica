@@ -36,6 +36,7 @@ public:
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton_31;
+    QPushButton *pushButton_4;
     QSpacerItem *verticalSpacer;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -55,7 +56,7 @@ public:
         Painel = new PainelNovo(centralWidget);
         Painel->setObjectName(QStringLiteral("Painel"));
 
-        gridLayout->addWidget(Painel, 0, 0, 5, 1);
+        gridLayout->addWidget(Painel, 0, 0, 6, 1);
 
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
@@ -79,9 +80,15 @@ public:
 
         gridLayout->addWidget(pushButton_31, 3, 1, 1, 1);
 
+        pushButton_4 = new QPushButton(centralWidget);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setMaximumSize(QSize(99, 27));
+
+        gridLayout->addWidget(pushButton_4, 4, 1, 1, 1);
+
         verticalSpacer = new QSpacerItem(20, 335, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(verticalSpacer, 4, 1, 1, 1);
+        gridLayout->addItem(verticalSpacer, 5, 1, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -99,6 +106,7 @@ public:
         QObject::connect(pushButton, SIGNAL(clicked()), MainWindow, SLOT(close()));
         QObject::connect(pushButton_2, SIGNAL(clicked()), Painel, SLOT(iteracaorect()));
         QObject::connect(pushButton_3, SIGNAL(clicked()), Painel, SLOT(iteracaocirc()));
+        QObject::connect(pushButton_4, SIGNAL(clicked()), Painel, SLOT(iteracaoelip()));
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -110,6 +118,7 @@ public:
         pushButton_2->setText(QApplication::translate("MainWindow", "retangulo", 0));
         pushButton_3->setText(QApplication::translate("MainWindow", "c\303\255rculo", 0));
         pushButton_31->setText(QApplication::translate("MainWindow", "Polilinha", 0));
+        pushButton_4->setText(QApplication::translate("MainWindow", "Elipse", 0));
     } // retranslateUi
 
 };

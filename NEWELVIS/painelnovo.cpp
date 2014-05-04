@@ -140,8 +140,8 @@ void PainelNovo :: paintGL( void )
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1,0,0);
 
-    r->desenharect(r->get_ponto1(),r->get_ponto2(),r->get_ponto3(),r->get_ponto4());
-    //printf("%i aa\n",c->get_centro()[0]);
+    //r->desenharect(r->get_ponto1(),r->get_ponto2(),r->get_ponto3(),r->get_ponto4());
+
     //exit(0);
 
     c->desenha_circulo(c->get_centro(),c->get_raio1());
