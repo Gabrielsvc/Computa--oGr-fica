@@ -8,6 +8,7 @@ PainelNovo::PainelNovo(QWidget *parent) :
     r=new Rect();
     c = new Elipse_Circulo('c');
     pl = new Plinha();
+
     e = new Elipse_Circulo('e');
 
     ponto_final_mouse = new int[2];
@@ -47,6 +48,7 @@ void PainelNovo :: initializeGL( void )
 
 
 void PainelNovo::mousePressEvent(QMouseEvent *event) {
+
     mouse_pressionado=true;
 
     if(modo_desenha_ret){
@@ -154,7 +156,11 @@ void PainelNovo :: paintGL( void )
 
     //c->desenha_circulo(c->get_centro(),c->get_raio1());
 
+
     pl->desenhappl(pl->get_pontos(),ponto_corrente_mouse);
+
+    printf("Cheguei aque!!!!!!!!!\n");
+    exit(0);
 
     //e->desenha_elipse(e->get_raio1(),e->get_raio2(),e->get_centro());
 

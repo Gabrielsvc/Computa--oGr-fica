@@ -38,20 +38,28 @@ void Plinha :: addppl(int x1, int y1){
     ponto *aux = new ponto();
     aux = pontos;
     ponto *aux2 = new ponto();
-    while(pontos->prox != NULL){
-        pontos = pontos->prox;
+    if(this->num_pontos != 0){
+        while(pontos->prox != NULL){
+            pontos = pontos->prox;
+        }
+        pontos->prox = aux2;
+        pontos->prox->x = x1;
+        pontos->prox->y = y1;
+        pontos = aux;
     }
-    pontos->prox = aux2;
-    pontos->prox->x = x1;
-    pontos->prox->y = y1;
-    pontos = aux;
+    else{
+        pontos->x = x1;
+        pontos->y = y1;
+        pontos->prox = aux2;
+    }
+    this->num_pontos += 1;
 }
 
 void Plinha :: desenhappl(ponto *pontos, int *pontomouse){
     int ponto1[2],ponto2[2];
 
     /*Gabriel coloquei este if porque há um problema de inicialização, percebe?*/
-    if(pontos->prox !=NULL){
+    if(this->num_pontos > 1){
         while(pontos->prox != NULL){
             ponto1[0]= pontos->x;
             ponto1[1]= pontos->y;
@@ -61,6 +69,11 @@ void Plinha :: desenhappl(ponto *pontos, int *pontomouse){
             pontos = pontos->prox;
         }
         Bresenham(ponto2,pontomouse);
+    }
+    else if(this->num_pontos == 1){
+        ponto1[0]= pontos->x;
+        ponto1[1]= pontos->y;
+        Bresenham(ponto1,pontomouse);
     }
 
 }
