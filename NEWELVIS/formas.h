@@ -1,6 +1,11 @@
 #ifndef FORMAS_H
 #define FORMAS_H
 #include "GL/gl.h"
+typedef struct f{
+    struct f *prox;
+    Formas *forma;
+
+}figura;
 
 typedef struct p{
     int x,y;
@@ -15,6 +20,7 @@ public:
     Formas();    
     void Bresenham(int*, int*);
     int get_num_pontos(){ return num_pontos;};
+    void set_tipo(char tipo){this->tipo = tipo;}
 protected :
     char tipo;
     int num_pontos;

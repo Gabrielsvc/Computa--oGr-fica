@@ -5,12 +5,16 @@
 PainelNovo::PainelNovo(QWidget *parent) :
     QGLWidget(parent)
 {
-    p=new Elipse_Circulo('c');
-    r=new Rect();
+    list_fig = new figura();
+    auxiliar = new figura();
+    /*Desenho das formas separadamente, sem a lista de formas */
+    /*
+    p = new Elipse_Circulo('c');
+    r = new Rect();
     c = new Elipse_Circulo('c');
     pl = new Plinha();
-
     e = new Elipse_Circulo('e');
+    */
 
     ponto_final_mouse = new int[2];
     modo_desenha_ret=false;
@@ -171,7 +175,7 @@ void PainelNovo :: paintGL( void )
 
     //c->desenha_circulo(c->get_centro(),c->get_raio1());
 
-    pl->desenha_polilinha();
+    //pl->desenha_polilinha();
     //p->desenha_circulo(p->get_centro(),p->get_raio1());
 
     //e->desenha_elipse(e->get_raio1(),e->get_raio2(),e->get_centro());
