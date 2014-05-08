@@ -7,6 +7,7 @@
 #include <cmath>
 #include <QGLWidget>
 #include <iostream>
+#include <QtGui/QKeyEvent>
 
 class PainelNovo : public QGLWidget
 {
@@ -41,7 +42,7 @@ protected:
     void mousePressEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);
     void mouseReleaseEvent(QMouseEvent *event);
-    /*void keyPressEvent(QKeyEvent *eventKey);*/
+    void keyPressEvent(QKeyEvent *eventKey);
 signals:
 
 public slots:
