@@ -15,6 +15,7 @@ public:
     Formas();    
     void Bresenham(int*, int*);
     int get_num_pontos(){ return num_pontos;};
+    char get_tipo(){return tipo;};
     void set_tipo(char tipo){this->tipo = tipo;}
 protected :
     char tipo;
@@ -42,6 +43,7 @@ public:
     Plinha(){
         cab_lista_pontos = new pontos();
         num_pontos = 0;
+        tipo = 'l';
     }
     void desenha_polilinha();
     void add_ponto_lista(int , int);
@@ -59,6 +61,7 @@ protected:
 
 public:
      Rect(){
+        tipo = 'r';
         preenchido = false;
         ponto1 = new int[2];
         ponto2 = new int[2];

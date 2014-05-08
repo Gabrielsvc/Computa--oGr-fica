@@ -1,26 +1,28 @@
 #ifndef PAINELNOVO_H
 #define PAINELNOVO_H
 
+#include "lista.h"
 #include <math.h>
 #include <stdio.h>
 #include <cmath>
-#include "formas.h"
 #include <QGLWidget>
+#include <iostream>
 
 class PainelNovo : public QGLWidget
 {
     Q_OBJECT
 public:
-    figura *list_fig;
-    figura *auxiliar;
+
+    Rect* ret_aux;
+    Plinha* poli_aux;
+    Elipse_Circulo* circ_aux;
+    Elipse_Circulo* elipse_aux;
+    Elipse_Circulo* ponto_aux;
+
     char tipo_atual;
-    /*
-    Rect *r;
-    Elipse_Circulo* p;
-    Elipse_Circulo* c;
-    Elipse_Circulo* e;
-    Plinha *pl;
-    */
+    Lista* list;
+
+
     explicit PainelNovo(QWidget *parent = 0);
 protected:
     bool modo_desenha_elip;
@@ -47,7 +49,7 @@ public slots:
         modo_desenha_circ = false;
         modo_desenha_elip = false;
         modo_desenha_pll = false;
-        modo_desenha_ponto = true;
+        modo_desenha_ponto = false;
     }
     void iteracaopll(){
         tipo_atual = 'l';

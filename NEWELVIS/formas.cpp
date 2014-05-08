@@ -8,11 +8,18 @@ Formas::Formas()
 {
 }
 
-void Rect :: set_rect_default(int* p_a,int* p_b){
-    int *p_c,*p_d;
+void Rect :: set_rect_default(int* a,int* b){
+    int *p_c,*p_d,*p_a,*p_b;
 
+    p_a = new int[2];
+    p_b = new int [2];
     p_c = new int[2];
     p_d = new int[2];
+
+    p_a[0]=a[0];
+    p_a[1]=a[1];
+    p_b[0]=b[0];
+    p_b[1]=b[1];
 
     if(p_a[0] < p_b[0]){
         p_c[0] = p_b[0];
