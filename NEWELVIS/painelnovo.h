@@ -25,6 +25,7 @@ public:
 
     explicit PainelNovo(QWidget *parent = 0);
 protected:
+    bool desenha_auxiliar;
     bool modo_desenha_elip;
     bool modo_desenha_circ;
     bool modo_desenha_ret;

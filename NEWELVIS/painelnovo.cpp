@@ -13,7 +13,7 @@ PainelNovo::PainelNovo(QWidget *parent) :
     elipse_aux = new Elipse_Circulo('e');
     ponto_aux = new Elipse_Circulo('p');
 
-
+    desenha_auxiliar = false;
     ponto_final_mouse = new int[2];
     modo_desenha_ret=false;
     modo_desenha_pll=false;
@@ -94,6 +94,7 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
         ponto_corrente_mouse[0] = event->x();
         ponto_corrente_mouse[1] = this->height() - event->y();
         poli_aux->add_ponto_lista(ponto_corrente_mouse[0],ponto_corrente_mouse[1]);
+
     }
 
     if(modo_desenha_pll && event->button()==Qt::MidButton){
@@ -108,6 +109,8 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
     if(modo_desenha_pll && event->button() == Qt::RightButton ){
             //delete(poli_aux);
             modo_desenha_pll = false;
+            delete(poli_aux);
+            poli_aux = new Plinha();
             updateGL();
     }
 
@@ -161,7 +164,7 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
     if(mouse_pressionado==true && modo_desenha_ret==true){
 
         ret_aux->set_rect_default(ponto_inicial_mouse,ponto_corrente_mouse);
-        list->add_figura(ret_aux);
+        //list->add_figura(ret_aux);
         updateGL();
         list->remove_figura();
     }
@@ -169,9 +172,12 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
     if(modo_desenha_pll && !mouse_pressionado && poli_aux->get_num_pontos()!=0){
 
         poli_aux->add_ponto_lista(ponto_corrente_mouse[0],ponto_corrente_mouse[1]);
-        list->add_figura(poli_aux);
+
+        //list->add_figura(poli_aux);
+        desenha_auxiliar = true;
         updateGL();
-        poli_aux->remove_ponto_lista();
+        desenha_auxiliar = false;
+        //poli_aux->remove_ponto_lista();
     }
 
     if(mouse_pressionado && modo_desenha_circ){
@@ -204,6 +210,9 @@ void PainelNovo :: paintGL( void )
     glClear(GL_COLOR_BUFFER_BIT);
     glColor3f(1,0,0);
 
+    if(desenha_auxiliar){
+        poli_aux->desenha_polilinha();
+    }
     list->desenha_lista();
 
     glFlush();
