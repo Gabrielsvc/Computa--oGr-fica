@@ -1,5 +1,6 @@
 #include "painelnovo.h"
 #include <QtGui/QMouseEvent>
+#include <QtGui/QKeyEvent>
 #include <stdio.h>
 
 PainelNovo::PainelNovo(QWidget *parent) :
@@ -48,7 +49,14 @@ void PainelNovo :: initializeGL( void )
   glClearColor(1,1,1,0);
 
 }
-
+void PainelNovo::keyPressEvent(QKeyEvent *eventKey){
+    if(modo_desenha_pll && eventKey->KeyPress == Qt::Key_Escape){
+        delete(poli_aux);
+        modo_desenha_pll = false;
+        poli_aux = new Plinha();
+        updateGL();
+    }
+}
 
 void PainelNovo::mousePressEvent(QMouseEvent *event) {
 
@@ -71,6 +79,7 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
         circ_aux->set_centro(ponto_inicial_mouse[0],ponto_inicial_mouse[1]);
 
     }
+
     if(modo_desenha_elip){
         elipse_aux = new Elipse_Circulo('e');
         ponto_inicial_mouse[0] = event->x();
@@ -80,19 +89,29 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
         elipse_aux->set_raio1(1);
         elipse_aux->set_raio2(1);
     }
+
     if( modo_desenha_pll && event->button()==Qt::LeftButton){
 
         ponto_corrente_mouse[0] = event->x();
         ponto_corrente_mouse[1] = this->height() - event->y();
         poli_aux->add_ponto_lista(ponto_corrente_mouse[0],ponto_corrente_mouse[1]);
     }
-    if(modo_desenha_pll && event->button()==Qt::RightButton){
+
+    if(modo_desenha_pll && event->button()==Qt::MidButton){
 
         poli_aux->add_ponto_lista(ponto_corrente_mouse[0],ponto_corrente_mouse[1]);
         list->add_figura(poli_aux);
         poli_aux = new Plinha();
         modo_desenha_pll=false;
+        poli_aux = new Plinha();
     }
+
+    if(modo_desenha_pll && event->button() == Qt::RightButton ){
+            delete(poli_aux);
+            modo_desenha_pll = false;
+            updateGL();
+    }
+
     if(modo_desenha_ponto && event->button()==Qt::LeftButton){
 
         ponto_aux = new Elipse_Circulo('p');

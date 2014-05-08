@@ -48,12 +48,14 @@ OBJECTS_DIR   = ./
 SOURCES       = ../NEWELVIS/main.cpp \
 		../NEWELVIS/mainwindow.cpp \
 		../NEWELVIS/formas.cpp \
-		../NEWELVIS/painelnovo.cpp moc_mainwindow.cpp \
+		../NEWELVIS/painelnovo.cpp \
+		../NEWELVIS/lista.cpp moc_mainwindow.cpp \
 		moc_painelnovo.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		formas.o \
 		painelnovo.o \
+		lista.o \
 		moc_mainwindow.o \
 		moc_painelnovo.o
 DIST          = /usr/lib/i386-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -289,7 +291,7 @@ qmake_all: FORCE
 
 dist: 
 	@test -d .tmp/NEWELVIS1.0.0 || mkdir -p .tmp/NEWELVIS1.0.0
-	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/NEWELVIS1.0.0/ && $(COPY_FILE) --parents ../NEWELVIS/mainwindow.h ../NEWELVIS/formas.h ../NEWELVIS/painelnovo.h .tmp/NEWELVIS1.0.0/ && $(COPY_FILE) --parents ../NEWELVIS/main.cpp ../NEWELVIS/mainwindow.cpp ../NEWELVIS/formas.cpp ../NEWELVIS/painelnovo.cpp .tmp/NEWELVIS1.0.0/ && $(COPY_FILE) --parents ../NEWELVIS/mainwindow.ui .tmp/NEWELVIS1.0.0/ && (cd `dirname .tmp/NEWELVIS1.0.0` && $(TAR) NEWELVIS1.0.0.tar NEWELVIS1.0.0 && $(COMPRESS) NEWELVIS1.0.0.tar) && $(MOVE) `dirname .tmp/NEWELVIS1.0.0`/NEWELVIS1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/NEWELVIS1.0.0
+	$(COPY_FILE) --parents $(SOURCES) $(DIST) .tmp/NEWELVIS1.0.0/ && $(COPY_FILE) --parents ../NEWELVIS/mainwindow.h ../NEWELVIS/formas.h ../NEWELVIS/painelnovo.h ../NEWELVIS/lista.h .tmp/NEWELVIS1.0.0/ && $(COPY_FILE) --parents ../NEWELVIS/main.cpp ../NEWELVIS/mainwindow.cpp ../NEWELVIS/formas.cpp ../NEWELVIS/painelnovo.cpp ../NEWELVIS/lista.cpp .tmp/NEWELVIS1.0.0/ && $(COPY_FILE) --parents ../NEWELVIS/mainwindow.ui .tmp/NEWELVIS1.0.0/ && (cd `dirname .tmp/NEWELVIS1.0.0` && $(TAR) NEWELVIS1.0.0.tar NEWELVIS1.0.0 && $(COMPRESS) NEWELVIS1.0.0.tar) && $(MOVE) `dirname .tmp/NEWELVIS1.0.0`/NEWELVIS1.0.0.tar.gz . && $(DEL_FILE) -r .tmp/NEWELVIS1.0.0
 
 
 clean:compiler_clean 
@@ -429,7 +431,8 @@ moc_mainwindow.cpp: /usr/include/qt5/QtWidgets/QMainWindow \
 		../NEWELVIS/mainwindow.h
 	/usr/lib/i386-linux-gnu/qt5/bin/moc $(DEFINES) $(INCPATH) -I/usr/include/c++/4.8 -I/usr/include/i386-linux-gnu/c++/4.8 -I/usr/include/c++/4.8/backward -I/usr/lib/gcc/i686-linux-gnu/4.8/include -I/usr/local/include -I/usr/lib/gcc/i686-linux-gnu/4.8/include-fixed -I/usr/include/i386-linux-gnu -I/usr/include ../NEWELVIS/mainwindow.h -o moc_mainwindow.cpp
 
-moc_painelnovo.cpp: ../NEWELVIS/formas.h \
+moc_painelnovo.cpp: ../NEWELVIS/lista.h \
+		../NEWELVIS/formas.h \
 		/usr/include/qt5/QtOpenGL/QGLWidget \
 		/usr/include/qt5/QtOpenGL/qgl.h \
 		/usr/include/qt5/QtGui/qopengl.h \
@@ -561,6 +564,7 @@ compiler_uic_clean:
 	-$(DEL_FILE) ui_mainwindow.h
 ui_mainwindow.h: ../NEWELVIS/mainwindow.ui \
 		../NEWELVIS/painelnovo.h \
+		../NEWELVIS/lista.h \
 		../NEWELVIS/formas.h \
 		/usr/include/qt5/QtOpenGL/QGLWidget \
 		/usr/include/qt5/QtOpenGL/qgl.h \
@@ -977,6 +981,7 @@ mainwindow.o: ../NEWELVIS/mainwindow.cpp ../NEWELVIS/mainwindow.h \
 		/usr/include/qt5/QtWidgets/qtoolbar.h \
 		/usr/include/qt5/QtWidgets/QWidget \
 		../NEWELVIS/painelnovo.h \
+		../NEWELVIS/lista.h \
 		../NEWELVIS/formas.h \
 		/usr/include/qt5/QtOpenGL/QGLWidget \
 		/usr/include/qt5/QtOpenGL/qgl.h \
@@ -998,6 +1003,7 @@ formas.o: ../NEWELVIS/formas.cpp ../NEWELVIS/formas.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o formas.o ../NEWELVIS/formas.cpp
 
 painelnovo.o: ../NEWELVIS/painelnovo.cpp ../NEWELVIS/painelnovo.h \
+		../NEWELVIS/lista.h \
 		../NEWELVIS/formas.h \
 		/usr/include/qt5/QtOpenGL/QGLWidget \
 		/usr/include/qt5/QtOpenGL/qgl.h \
@@ -1122,6 +1128,10 @@ painelnovo.o: ../NEWELVIS/painelnovo.cpp ../NEWELVIS/painelnovo.h \
 		/usr/include/qt5/QtGui/qsurfaceformat.h \
 		/usr/include/qt5/QtGui/QMouseEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o painelnovo.o ../NEWELVIS/painelnovo.cpp
+
+lista.o: ../NEWELVIS/lista.cpp ../NEWELVIS/lista.h \
+		../NEWELVIS/formas.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o lista.o ../NEWELVIS/lista.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp
