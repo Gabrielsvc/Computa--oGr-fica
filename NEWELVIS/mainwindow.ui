@@ -15,39 +15,13 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0" rowspan="10">
+     <widget class="PainelNovo" name="Painel" native="true"/>
+    </item>
     <item row="0" column="1">
      <widget class="QPushButton" name="pushButton">
       <property name="text">
-       <string>fechar</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" rowspan="7">
-     <widget class="PainelNovo" name="Painel" native="true"/>
-    </item>
-    <item row="6" column="1">
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>335</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="2" column="1">
-     <widget class="QPushButton" name="pushButton_3">
-      <property name="maximumSize">
-       <size>
-        <width>99</width>
-        <height>27</height>
-       </size>
-      </property>
-      <property name="text">
-       <string>círculo</string>
+       <string>FECHAR</string>
       </property>
      </widget>
     </item>
@@ -60,7 +34,27 @@
        </size>
       </property>
       <property name="text">
-       <string>retangulo</string>
+       <string>Retangulo</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="maximumSize">
+       <size>
+        <width>99</width>
+        <height>27</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Círculo</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QPushButton" name="pushButton_5">
+      <property name="text">
+       <string>Polilinha</string>
       </property>
      </widget>
     </item>
@@ -77,19 +71,46 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
-     <widget class="QPushButton" name="pushButton_5">
-      <property name="text">
-       <string>Polilinha</string>
-      </property>
-     </widget>
-    </item>
     <item row="5" column="1">
      <widget class="QPushButton" name="pushButton_6">
       <property name="text">
        <string>Ponto</string>
       </property>
      </widget>
+    </item>
+    <item row="6" column="1">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
+     <widget class="QPushButton" name="pushButton_7">
+      <property name="text">
+       <string>Copiar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="8" column="1">
+     <widget class="QPushButton" name="pushButton_8">
+      <property name="text">
+       <string>Transladar</string>
+      </property>
+     </widget>
+    </item>
+    <item row="9" column="1">
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>335</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>
@@ -126,6 +147,7 @@
     <slot>iteracaoelip()</slot>
     <slot>iteracaopll()</slot>
     <slot>iteracaoponto()</slot>
+    <slot>modoedicao()</slot>
    </slots>
   </customwidget>
  </customwidgets>

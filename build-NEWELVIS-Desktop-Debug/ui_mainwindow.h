@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
@@ -39,6 +40,7 @@ public:
     QPushButton *pushButton_4;
     QPushButton *pushButton_5;
     QPushButton *pushButton_6;
+    QFrame *line;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -62,11 +64,11 @@ public:
         Painel = new PainelNovo(centralWidget);
         Painel->setObjectName(QStringLiteral("Painel"));
 
-        gridLayout->addWidget(Painel, 0, 0, 7, 1);
+        gridLayout->addWidget(Painel, 0, 0, 8, 1);
 
         verticalSpacer = new QSpacerItem(20, 335, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout->addItem(verticalSpacer, 6, 1, 1, 1);
+        gridLayout->addItem(verticalSpacer, 7, 1, 1, 1);
 
         pushButton_3 = new QPushButton(centralWidget);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
@@ -95,6 +97,13 @@ public:
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
 
         gridLayout->addWidget(pushButton_6, 5, 1, 1, 1);
+
+        line = new QFrame(centralWidget);
+        line->setObjectName(QStringLiteral("line"));
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        gridLayout->addWidget(line, 6, 1, 1, 1);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
