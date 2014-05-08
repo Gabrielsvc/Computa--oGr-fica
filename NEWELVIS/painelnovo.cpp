@@ -103,7 +103,6 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
         list->add_figura(poli_aux);
         poli_aux = new Plinha();
         modo_desenha_pll=false;
-        poli_aux = new Plinha();
     }
 
     if(modo_desenha_pll && event->button() == Qt::RightButton ){
@@ -161,10 +160,10 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
     ponto_corrente_mouse[0]=event->x();
     ponto_corrente_mouse[1]=this->height()-event->y();
 
-    if(mouse_pressionado==true && modo_desenha_ret==true){
+    if(mouse_pressionado && modo_desenha_ret){
 
         ret_aux->set_rect_default(ponto_inicial_mouse,ponto_corrente_mouse);
-        //list->add_figura(ret_aux);
+        list->add_figura(ret_aux);
         updateGL();
         list->remove_figura();
     }
@@ -177,7 +176,7 @@ void PainelNovo::mouseMoveEvent(QMouseEvent *event) {
         desenha_auxiliar = true;
         updateGL();
         desenha_auxiliar = false;
-        //poli_aux->remove_ponto_lista();
+        poli_aux->remove_ponto_lista();
     }
 
     if(mouse_pressionado && modo_desenha_circ){
