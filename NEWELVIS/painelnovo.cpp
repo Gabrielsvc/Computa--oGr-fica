@@ -49,14 +49,13 @@ void PainelNovo :: initializeGL( void )
   glClearColor(1,1,1,0);
 
 }
-void PainelNovo::keyPressEvent(QKeyEvent *eventKey){
+/*void PainelNovo::keyPressEvent(QKeyEvent *eventKey){
     if(modo_desenha_pll && eventKey->KeyPress == Qt::Key_Escape){
-        delete(poli_aux);
         modo_desenha_pll = false;
-        poli_aux = new Plinha();
+        //poli_aux = new Plinha();
         updateGL();
     }
-}
+}*/
 
 void PainelNovo::mousePressEvent(QMouseEvent *event) {
 
@@ -107,7 +106,7 @@ void PainelNovo::mousePressEvent(QMouseEvent *event) {
     }
 
     if(modo_desenha_pll && event->button() == Qt::RightButton ){
-            delete(poli_aux);
+            //delete(poli_aux);
             modo_desenha_pll = false;
             updateGL();
     }

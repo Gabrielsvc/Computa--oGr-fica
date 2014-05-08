@@ -18,6 +18,7 @@ void Lista :: add_figura(Formas* f){
     }
     aux->prox = newFigura;
     this->num_figuras += 1;
+    printf("%i\n",this->num_figuras);
 }
 
 void Lista :: remove_figura(){
@@ -39,6 +40,7 @@ void Lista :: remove_figura(){
         exit(0);
     }
     this->num_figuras--;
+    printf("%i\n",this->num_figuras);
 }
 
 void Lista :: desenha_lista(){
